@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const buildPath = path.resolve(__dirname, 'dist')
 
@@ -70,23 +71,20 @@ module.exports = {
   // https://webpack.js.org/concepts/plugins/
   plugins: [
     new CleanWebpackPlugin(), // cleans output.path by default
+    new CopyWebpackPlugin([
+        {from:'src/img',to:'img'}
+    ]),
     new HtmlWebpackPlugin({
-      template: './src/page-index/tmpl.html',
-      inject: 'body',
+      template: './src/page-list/index.html',
+      inject: true,
       chunks: ['index'],
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-      template: './src/page-about/tmpl.html',
-      inject: 'body',
-      chunks: ['about'],
-      filename: 'about.html'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/page-contacts/tmpl.html',
-      inject: 'body',
-      chunks: ['contacts'],
-      filename: 'contacts.html'
+      template: './src/page-details/details.html',
+      inject: true,
+      chunks: ['details'],
+      filename: 'details.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
