@@ -12,10 +12,10 @@ module.exports = {
  devtool: 'source-map',
  // https://webpack.js.org/concepts/entry-points/#multi-page-application
  entry: {
-   index: './src/page-index/main.js',
-   about: './src/page-about/main.js',
-   contacts: './src/page-contacts/main.js'
- },
+  index: './src/page-list/main.js',
+  details: './src/page-details/main.js',
+},
+
  // how to write the compiled files to disk
  // https://webpack.js.org/concepts/output/
  output: {

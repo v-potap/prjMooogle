@@ -1,28 +1,13 @@
 <section class="list-handler">
-  <select name="category" class="list-handler__filter-by-category">
-    <option value="all">All Categories</option>
-    <option value="1">Category 1</option>
-    <option value="2">Category 2</option>
-    <option value="3">Category 3</option>
-  </select>
+  <button class="list-handler__filter-by-category" type="button" data-action="category">
+    Category
+  </button>
   <div class="list-handler__sort-inputs">
-    <label class="list-handler__sort-by-title"
-      >Title<input class="list-handler__sort-by-title--input"
-        name="sort-inputs__by-title"
-        type="number"
-        min="-1"
-        max="1"
-        step="2"
-        value="1"
-    /></label>
-    <label class="list-handler__sort-by-date"
-      >Date<input class="list-handler__sort-by-title--input"
-        name="sort-inputs__by-date"
-        type="number"
-        min="-1"
-        max="1"
-        step="2"
-        value="1"
-    /></label>
+    <button class="list-handler__sort-by-title" type="button" data-action="title">
+      Title
+    </button>
+    <button class="list-handler__sort-by-date" type="button" data-action="date">
+      Date
+    </button>
   </div>
 </section>
