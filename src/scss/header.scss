@@ -1,0 +1,44 @@
+.header__page {
+  max-width: 100%;
+  height: 55px;
+  background-color: #78c0bc;
+  margin: 0;
+  padding: 0;
+}
+
+.header__pageNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.header__siteNav {
+  padding: 0;
+  margin: 0;
+}
+
+.header__pageLogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 110px;
+}
+
+.logo {
+  width: 25px;
+  height: 24px;
+  padding-left: 18px;
+}
+
+.name {
+  font-size: 18px;
+  padding-left: 8px;
+}
+
+.header__search {
+  margin-left: auto;
+}
+
+
