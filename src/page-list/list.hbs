@@ -1,10 +1,22 @@
-{{!-- <li class="posts__item">
-  <h3>{{title}}</h3>
-  <p>{{text}}</p>
-  <button data-id={{id}} data-type="DELETE" >
-    x
-  </button>
-  <button data-id={{id}} data-type="UPDATE" >
-    e
-  </button>
-</li> --}}
+{{#each results}}
+<a class="posts__link" href="#">
+  <div class="posts-block">
+      <img class="posts__image" src="https://image.tmdb.org/t/p/w500{{backdrop_path}}" alt="">
+      <div class="posts-block__text">
+        <p>{{original_title}}</p>
+      </div>
+      <div class="posts-block__button">
+        <div class="posts-block__button1">
+          <svg>
+            <use href="../img/sprite.svg#star-full"></use>
+          </svg>
+        </div>
+        <div class="posts-block__button2">
+          <svg>
+            <use href="../img/sprite.svg#bell"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </a>
+{{/each}}
