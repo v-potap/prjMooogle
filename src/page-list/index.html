@@ -14,11 +14,19 @@
 
   <%= require('html-loader!../globals/header.html') %>
   <%= require('html-loader!../globals/nav.html') %>
+  
 
   <h1 class="page-title">
     <i class="fas fa-user-secret"></i>
     Mooogle
   </h1>
+
+  <img src="./img/film-image@X1.png" alt="">
+  <svg>
+    <use href='./img/symbol-defs.svg#icon-newspaper'></use>
+  </svg>
+
+  <%= require('html-loader!../page-details/details.html') %>
 
   <%= require('html-loader!../globals/footer.html') %>
 </body>

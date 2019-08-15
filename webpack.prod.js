@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const buildPath = path.resolve(__dirname, 'dist')
 
@@ -63,13 +64,42 @@ module.exports = {
       {
         test: /\.hbs$/,
         use: 'handlebars-loader'
-      }
+      },
+      {
+        test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+              limit: 10000,
+              mimetype: 'application/font-woff',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
     ]
   },
 
   // https://webpack.js.org/concepts/plugins/
   plugins: [
     new CleanWebpackPlugin(), // cleans output.path by default
+    new CopyWebpackPlugin([
+        {from:'src/img',to:'img'}
+    ]),
     new HtmlWebpackPlugin({
       template: './src/page-index/tmpl.html',
       inject: 'body',
