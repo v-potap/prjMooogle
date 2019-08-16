@@ -1,0 +1,156 @@
+.modal-form {
+  margin: 0;
+  padding: 0;
+  padding-top: 60px;
+  width: 360px;
+  height: 360px;
+  background-color: #77c1bb;
+}
+
+.modal-form__image {
+  width: 122px;
+  height: 115px;
+  margin: 0 auto;
+  display: block;
+}
+
+.modal-form__text {
+  margin: 0;
+  margin-top: 14px;
+  text-align: center;
+  color: #372c48;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.12px;
+}
+
+.search-form {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 64px;
+  padding-bottom: 4px;
+  width: 230px;
+  border-bottom: 2px solid #ffffff;
+}
+
+.search-form__picture {
+  fill: #ffffff;
+  width: 18px;
+  height: 18px;
+}
+
+.search-form__field {
+  border: 0;
+  width: 184px;
+  padding-left: 10px;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #77c1bb;
+  color: #fff;
+  outline: none;
+}
+
+.search-form__field::placeholder {
+  color: #ffffff;
+}
+
+.search-form__button {
+  border: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #77c1bb;
+}
+
+.search-form__button--elem {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  background-color: #77c1bb;
+}
+
+@media (min-width: 768px) {
+  .modal-form {
+    width: 768px;
+    height: 370px;
+  }
+
+  .modal-form__text {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .search-form {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 64px;
+    padding-bottom: 4px;
+    width: 280px;
+    border-bottom: 2px solid #ffffff;
+  }
+  .search-form__field {
+    padding-left: 15px;
+  }
+
+  .search-form__picture {
+    padding-top: 4px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .search-form__button {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1024px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .modal-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    width: 1024px;
+    height: 620px;
+  }
+
+  .modal-form__image {
+    width: 205px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .modal-form__text {
+    margin: 0;
+    margin-top: 20px;
+    text-align: center;
+    color: #372c48;
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 0.21px;
+  }
+  .search-form {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding-bottom: 4px;
+    width: 420px;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  .search-form__field {
+    width: 300px;
+}
+}
