@@ -15,7 +15,7 @@ const apiKey = '442f08ed580949109afb21f8d78ec790';
 const page = 1;
 
 function getMovieInfo() {
-  return fetch(`${movieDB}movie/popular?api_key=${apiKey}&page=${page}&language=en-US`)
+  return fetch(`${movieDB}discover/movie?api_key=${apiKey}&page=${page}&language=en-US&region=US&sort_by=popularity.desc`) // if series: tv instead movies
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
@@ -23,4 +23,22 @@ function getMovieInfo() {
   });
 }
 
+function getMoviesGenres() {
+  return fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=442f08ed580949109afb21f8d78ec790&language=en-US`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  });
+}
+
+function getSeriesGenres() {
+  return fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=442f08ed580949109afb21f8d78ec790&language=en-US`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  });
+}
+
 getMovieInfo();
+getMoviesGenres();
+getSeriesGenres()
