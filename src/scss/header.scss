@@ -1,44 +1,115 @@
-.header__page {
-  max-width: 100%;
-  height: 55px;
-  background-color: #78c0bc;
-  margin: 0;
-  padding: 0;
+.header {
+  &__page {
+    max-width: 100%;
+    background-color: #78c0bc;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+  &__pageNav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 320px;
+    height: 55px;
+    margin: 0 auto;
+  }
+  &__siteNav {
+    padding: 0;
+    margin: 0;
+    & button {
+      background: none;
+      padding: 0;
+      border: 0;
+    }
+  }
+  &__siteNav svg {
+    width: 20px;
+    height: 14px;
+    fill: #372c47;
+  }
+  &__pageLogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90px;
+    margin-left: 18px;
+  }
+  &__search {
+    display: flex;
+    margin-left: auto;
+  }
 }
 
-.header__pageNav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  max-width: 320px;
-  margin: 0 auto;
-}
-
-.header__siteNav {
-  padding: 0;
-  margin: 0;
-}
-
-.header__pageLogo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 110px;
-}
 
 .logo {
   width: 25px;
   height: 24px;
-  padding-left: 18px;
 }
 
 .name {
-  font-size: 18px;
-  padding-left: 8px;
+  font-size: 16px;
+  color: #41485b;
+  font-weight: 300;
 }
 
-.header__search {
-  margin-left: auto;
+.search__input {
+  display: none;
+}
+
+.header__search svg {
+  width: 18px;
+  height: 19px;
+  fill:#372c48;
+}
+
+@media(min-width: 768px) {
+  .header {
+    &__pageNav {
+      max-width: 725px;
+      height: 65px;
+    }
+    &__search {
+      border-bottom: 1px solid #3b354e;
+    }
+    &__siteNav svg {
+      width: 25px;
+      height: 17px;
+    }
+  }
+  .search__input {
+    display: block;
+    position: relative;
+    width: 222px;
+    background: none;
+    border: none;
+    left: 5%;
+  }
+  .search__input::placeholder {
+    color: #372c48;
+  }
+  .search__img {
+    position: absolute;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    &__pageNav {
+      max-width: 980px;
+    }
+  }
 }
 
 
+.header__siteNav1 {
+  position: absolute;
+  left: 0;
+  top: 55px;
+  width: 300px;
+  transition: .3s linear;
+  transform: translateX(-100%);
+  z-index: 10;
+  background-color: #fff;
+  height: 515px;
+}
