@@ -1,5 +1,10 @@
-.container {
-  width: 330px;
+.category__container {
+  width: 100vw;
+  position: fixed;
+  top: 105px;
+  z-index: 20;
+  background: #fff;
+  height: 54px;
 }
 
 .list-handler {
@@ -7,7 +12,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 54px;
+  width: 330px;
+  height: auto;
 
   &__filter-inputs {
     display: flex;
@@ -68,13 +74,13 @@
 }
 
 @media (min-width: 768px) {
-  .container {
+  .list-handler {
     width: 740px;
   }
 }
 
 @media (min-width: 1024px) {
-  .container {
+  .list-handler {
     width: 960px;
   }
 }
