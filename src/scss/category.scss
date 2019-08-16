@@ -1,4 +1,10 @@
 .list-handler {
+  margin: 0 auto;
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  height: 54px;
+
   &__filter-by-category {
   }
 
