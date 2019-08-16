@@ -1,10 +1,13 @@
 .header {
   &__page {
-    max-width: 100%;
+    width: 100%;
+    position: fixed;
     background-color: #78c0bc;
-    height: auto;
+    height: 55px;
     margin: 0;
+    top: 0;
     padding: 0;
+    z-index: 11;
   }
   &__pageNav {
     display: flex;
@@ -17,16 +20,22 @@
   &__siteNav {
     padding: 0;
     margin: 0;
-    & button {
+    &__button {
       background: none;
       padding: 0;
       border: 0;
     }
   }
-  &__siteNav svg {
-    width: 20px;
-    height: 14px;
-    fill: #372c47;
+  &__siteNavCat {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+    transition: 0.3s linear;
+    transform: translateX(-100%);
+    z-index: 10;
+    background-color: #fff;
+    height: 515px;
   }
   &__pageLogo {
     display: flex;
@@ -41,6 +50,17 @@
   }
 }
 
+.siteNav__icon {
+  width: 20px;
+  height: 14px;
+  fill: #372c47;
+}
+
+.search__icon {
+  width: 18px;
+  height: 19px;
+  fill: #372c48;
+}
 
 .logo {
   width: 25px;
@@ -57,13 +77,44 @@
   display: none;
 }
 
-.header__search svg {
-  width: 18px;
-  height: 19px;
-  fill:#372c48;
+.siteNavCat__item {
+  font-size: 12px;
+  padding-left: 72px;
+  padding-top: 35px;
+  list-style: none;
 }
 
-@media(min-width: 768px) {
+.item__icon {
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  left: 17px;
+}
+
+.item__category {
+  font-size: 10px;
+  padding-left: 18px;
+  padding-top: 15px;
+}
+
+.header-overlay {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  width: 1024px;
+  height: calc(100vh - 55px);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 11;
+  visibility: hidden;
+  &.show {
+    visibility: visible;
+  }
+  .header__siteNavCat {
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) {
   .header {
     &__pageNav {
       max-width: 725px;
@@ -93,6 +144,14 @@
   }
 }
 
+.header-overlay {
+  visibility: hidden;
+}
+
+.header-overlay {
+  visibility: hidden;
+}
+
 @media (min-width: 1024px) {
   .header {
     &__pageNav {
@@ -101,15 +160,10 @@
   }
 }
 
+.header-overlay {
+  visibility: hidden;
+}
 
-.header__siteNav1 {
-  position: absolute;
-  left: 0;
-  top: 55px;
-  width: 300px;
-  transition: .3s linear;
-  transform: translateX(-100%);
-  z-index: 10;
-  background-color: #fff;
-  height: 515px;
+.header-overlay {
+  visibility: hidden;
 }
