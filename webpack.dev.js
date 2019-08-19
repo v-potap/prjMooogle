@@ -11,6 +11,8 @@ module.exports = {
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
     header: './src/js/header.js',
+    app: './src/js/app.js',
+    serach: './src/js/search.js',
     index: './src/page-list/main.js',
     details: './src/page-details/main.js',
   },
