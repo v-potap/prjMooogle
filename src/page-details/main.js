@@ -12,10 +12,16 @@ console.log('Hi all');
 
 // slider__actors
 
-$('.slider__actors').slick({
+$('.slider-actors').slick({
   infinite: true,
   slidesToShow: 3,
-  slidesToScroll: 3
+  slidesToScroll: 1,
+});
+
+$('.slider-pictures').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 1,
 });
 
 /* <script type="text/javascript" src="slick/slick.min.js"></script> */
