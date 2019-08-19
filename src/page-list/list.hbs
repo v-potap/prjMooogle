@@ -1,12 +1,13 @@
 {{#each results}}
-<a class="posts__link" href="./details.html">
-  <div class="posts-block">
+<div class="posts__link">
+  <a class="posts-block" data-id={{id}} href="./details.html">
       <img class="posts__image" src="https://image.tmdb.org/t/p/w500{{backdrop_path}}" alt="">
       <div class="posts-block__text">
         <p>{{title}}{{name}}</p>
       </div>
+    </a>
       <div class="posts-block__button">
-        <div class="posts-block__button1">
+        <div data-id={{id}} class="posts-block__button1">
           <svg>
             <use href="../img/sprite.svg#star-full"></use>
           </svg>
@@ -17,6 +18,5 @@
           </svg>
         </div>
       </div>
-    </div>
-  </a>
+  </div>
 {{/each}}
