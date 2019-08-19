@@ -42,7 +42,7 @@ input[type="radio"].visually-hidden {
 
 .film-section {
   max-width: 346px;
-  margin: 0 auto;
+  margin: 55px auto 0 auto;
   padding: 7px;
 }
 
@@ -197,7 +197,6 @@ input[type="radio"].visually-hidden {
 
   .film-section {
     max-width: 768px;
-    margin: 0 auto;
     padding: 20px;
   }
 
@@ -410,4 +409,8 @@ input[type="radio"].visually-hidden {
   .reviews-wrapper {
     margin-bottom: 40px;
   }
+}
+
+.footer {
+  height: 90px;
 }
