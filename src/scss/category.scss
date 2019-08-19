@@ -1,10 +1,17 @@
 .category__container {
+  display: none;
+}
+
+@media (min-width: 768px) {
+
+.category__container {
   width: 100vw;
   position: fixed;
   top: 105px;
   z-index: 20;
   background: #fff;
   height: 54px;
+  display: block;
 }
 
 .list-handler {
@@ -74,12 +81,11 @@
     }
   }
 }
-
-@media (min-width: 768px) {
+}
   .list-handler {
     width: 740px;
   }
-}
+
 
 @media (min-width: 1024px) {
   .list-handler {
