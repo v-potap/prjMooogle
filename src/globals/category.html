@@ -1,28 +1,89 @@
-<section class="list-handler">
-  <select name="category" class="list-handler__filter-by-category">
-    <option value="all">All Categories</option>
-    <option value="1">Category 1</option>
-    <option value="2">Category 2</option>
-    <option value="3">Category 3</option>
-  </select>
-  <div class="list-handler__sort-inputs">
-    <label class="list-handler__sort-by-title"
-      >Title<input class="list-handler__sort-by-title--input"
-        name="sort-inputs__by-title"
-        type="number"
-        min="-1"
-        max="1"
-        step="2"
-        value="1"
-    /></label>
-    <label class="list-handler__sort-by-date"
-      >Date<input class="list-handler__sort-by-title--input"
-        name="sort-inputs__by-date"
-        type="number"
-        min="-1"
-        max="1"
-        step="2"
-        value="1"
-    /></label>
+<div class="category__container">
+  <form class="list-handler">
+    <div class="list-handler__filter-inputs">
+    <p>Category :</p>
+    <input class="list-handler__filter--checkbox" type="checkbox" name="category" id="checkbox-category">
+    <label for="checkbox-category" class="list-handler__filter--label">
+        &#9776
+    </label>
   </div>
-</section>
+
+  <div class="list-handler__sort-inputs">
+    <div class="list-handler__sort">
+     <p>by title :</p>
+      <input
+    class="list-handler__sort--radio"
+    type="radio"
+    id="radio-title-asc"
+    name="sort-by-title"
+    value="asc"
+  />
+  <label for="radio-title-asc" class="list-handler__sort--label">
+      &#10506
+  </label>
+
+  <input
+  class="list-handler__sort--radio"
+  type="radio"
+  id="radio-title-desc"
+  name="sort-by-title"
+  value="desc"
+/>
+<label for="radio-title-desc" class="list-handler__sort--label">
+    &#10507
+</label>
+
+<input
+class="list-handler__sort--radio"
+type="radio"
+id="radio-title-none"
+name="sort-by-title"
+value="none"
+checked
+/>
+<label for="radio-title-none" class="list-handler__sort--label">
+    &#9747
+</label>
+</div>
+
+<div class="list-handler__sort">
+    <p>by date : </p>
+     <input
+   class="list-handler__sort--radio"
+   type="radio"
+   id="radio-date-asc"
+   name="sort-by-date"
+   value="asc"
+ />
+ <label for="radio-date-asc" class="list-handler__sort--label">
+     &#10506
+ </label>
+
+ <input
+ class="list-handler__sort--radio"
+ type="radio"
+ id="radio-date-desc"
+ name="sort-by-date"
+ value="desc"
+/>
+<label for="radio-date-desc" class="list-handler__sort--label">
+   &#10507
+</label>
+
+<input
+class="list-handler__sort--radio"
+type="radio"
+id="radio-date-none"
+name="sort-by-date"
+value="none"
+checked
+/>
+<label for="radio-date-none" class="list-handler__sort--label">
+   &#9747
+</label>
+
+</div>
+
+  </div>
+</form>
+</div>

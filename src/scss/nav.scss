@@ -1,0 +1,38 @@
+.form-storages {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  position: fixed;
+  top: 55px;
+  width: 100vw;
+  height: 50px;
+  box-shadow: 0 0 4px 0 rgba(205, 205, 205, 1);
+  z-index: 30;
+  background: #fff;
+
+  &__label {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  &__radio {
+    width: 0;
+    height: 0;
+  }
+
+  &__radio:checked + &__label {
+    border-bottom: 2px solid black;
+  }
+}
