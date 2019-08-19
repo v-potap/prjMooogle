@@ -5,6 +5,7 @@ const posts = document.querySelector('.posts');
 const button = document.querySelector('loadMore');
 const moviesButton = document.getElementById('radio-movies');
 const seriesButton = document.getElementById('radio-series');
+let filmsData;
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded', 'page-about');
@@ -12,16 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 posts.addEventListener('click', function(event) {
-  // event.preventDefault();
-  // console.log(event.target.nodeName);
-  console.log(event.target.closest('.posts-block__button1'));
-  const blockLink = event.target.closest('.posts-block');
-  console.log(blockLink);
+  const blockLink = event.target.closest('.posts__link');
   const buttonfavourite = event.target.closest('.posts-block__button1');
+  console.log('blockLink', blockLink);
+  console.log('event.target :', event.target);
   const id = blockLink.dataset.id;
   if(blockLink) {
     localStorage.setItem('id', id);
   }
+
+
+
+  if(buttonfavourite) {
+    let favouriteMovies = localStorage.getItem('favouriteMovies');
+
+    if ( favouriteMovies !== null) {
+      favouriteMovies = JSON.parse(favouriteMovies);
+
+    } else {
+      favouriteMovies = [];
+    }
+
+    // console.log('filmsData', filmsData);
+    // console.log('id :', id);
+    favouriteMovies.push(filmsData.find(el => +id === el.id));
+    // console.log('favouriteMovies :', favouriteMovies);
+    localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies));
+  }
+
+
+
 });
 
 const movieDB = 'https://api.themoviedb.org/3/';
@@ -35,6 +56,7 @@ function getMovieInfo() {
     console.log(data);
     posts.innerHTML = '';
     posts.insertAdjacentHTML('afterbegin', list(data));
+    filmsData = data.results;
   });
 }
 
@@ -45,6 +67,7 @@ function getSeriesInfo() {
     console.log(data);
     posts.innerHTML = '';
     posts.insertAdjacentHTML('afterbegin', list(data));
+    filmsData = data.results;
   });
 }
 
@@ -78,11 +101,3 @@ seriesButton.addEventListener('click', function() {
   getSeriesInfo();
   localStorage.setItem('type', 'series');
 })
-
-// setTimeout(() => {
-//   const favouriteButton = document.querySelector('.posts-block__button1');
-
-//   favouriteButton.addEventListener('click', function() {
-//     alert('Hello!');
-//   });
-// }, 1000);
