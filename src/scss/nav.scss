@@ -30,6 +30,7 @@
   &__radio {
     width: 0;
     height: 0;
+    visibility: hidden;
   }
 
   &__radio:checked + &__label {
