@@ -10,8 +10,8 @@ module.exports = {
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
-    app: './src/js/app.js',
-    serach: './src/js/search.js',
+    header: './src/js/header.js',
+    search: './src/js/search.js',
     index: './src/page-list/main.js',
     details: './src/page-details/main.js',
   },
