@@ -97,13 +97,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/page-list/index.html',
       inject: true,
-      chunks: ['app', 'index'],
+      chunks: ['header', 'index'],
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
       template: './src/page-details/details.html',
       inject: true,
-      chunks: ['app', 'details'],
+      chunks: ['header', 'details'],
       filename: 'details.html'
     }),
     new WebpackBar()
