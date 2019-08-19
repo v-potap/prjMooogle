@@ -10,7 +10,7 @@ module.exports = {
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
-    app: './src/js/app.js',
+    header: './src/js/header.js',
     index: './src/page-list/main.js',
     details: './src/page-details/main.js',
   },
