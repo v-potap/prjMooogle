@@ -5,7 +5,7 @@ img {
 }
 
 .posts {
-  padding-top: 160px;
+  padding-top: 75px;
   width: 346px;
   margin: 0 auto;
   display: block;
@@ -93,6 +93,7 @@ img {
 
 @media (min-width: 768px) {
   .posts {
+    padding-top: 160px;
     width: 758px;
     display: flex;
     flex-wrap: wrap;
@@ -119,6 +120,7 @@ img {
 
 @media (min-width: 1024px) {
   .posts {
+    padding-top: 160px;
     width: 1014px;
     display: flex;
     flex-wrap: wrap;
