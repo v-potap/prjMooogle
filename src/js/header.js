@@ -1,5 +1,5 @@
 import search from "../js/search";
-//import openModal from "./search";
+
 class App {
   constructor() {
     this.refs = {};
@@ -15,7 +15,6 @@ class App {
   }
 
   handleClick() {
-    console.log('showww');
     this.refs.siteNavMenu.classList.toggle('show');
   };
 
