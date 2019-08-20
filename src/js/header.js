@@ -1,5 +1,5 @@
-import  "./js/search";
-
+import "../js/search";
+//import openModal from "./search";
 class App {
   constructor() {
     this.refs = {};
@@ -11,9 +11,11 @@ class App {
     this.refs.navButton.addEventListener('click', this.handleClick.bind(this));
     this.refs.menuCategory.addEventListener('click', this.handleClickTitle.bind(this));
     this.refs.searchInput.addEventListener('click', this.handleClickSearchInput.bind(this));
+
   }
 
   handleClick() {
+    console.log('showww');
     this.refs.siteNavMenu.classList.toggle('show');
   };
 
@@ -23,6 +25,7 @@ class App {
 
   handleClickSearchInput(e) {
     e.currentTarget.classList.toggle('click');
+    openModal();
   };
 
 
