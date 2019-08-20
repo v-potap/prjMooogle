@@ -25,8 +25,7 @@ class App {
 
   handleClickSearchInput(e) {
     e.currentTarget.classList.toggle('click');
-    openModal();
-    console.log('click');
+    search.openModal();
   };
 
 

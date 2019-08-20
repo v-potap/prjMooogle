@@ -1,28 +1,35 @@
-const input = document.querySelector("search-form__field");
-const modalform = document.querySelector('.modal-form');
-const first_button = document.querySelector(".header__search");
-const overlay = document.querySelector('.modal-overlay');
-const closeModalBtn = document.querySelector('button[data-action="close-modal-form"]');
-first_button.addEventListener('click', openModal);
-overlay.addEventListener('click', closeModal);
-closeModalBtn.addEventListener('click', closeModal);
+export default new Search ();
+class Search {
+  constructor() {
+    this.refs = {};
+    this.refs.input = document.querySelector("search-form__field");
+    this.refs.modalform = document.querySelector(".modal-form");
+    this.refs.first_button = document.querySelector(".header__search");
+    this.refs.overlay = document.querySelector(".modal-overlay");
+    this.refs.closeModalBtn = document.querySelector('button[data-action="close-modal-form"]');
 
-export default function openModal(e) {
-  e.preventDefault();
-  modalform.classList.add('is-open');
-  overlay.classList.add('is-open');
-  window.addEventListener('keydown', handleButtonPress)
-}
-
-function closeModal() {
-  modalform.classList.remove('is-open');
-  overlay.classList.remove('is-open');
-  window.removeEventListener('keydown', handleButtonPress)
-}
-
-function handleButtonPress(e) {
-  if(e.code !== 'Escape') {
-  return;
+    this.refs.first_button.addEventListener("click", this.openModal.bind(this));
+    this.refs.overlay.addEventListener("click", this.closeModal.bind(this));
+    this.refs.closeModalBtn.addEventListener("click", this.closeModal.bind(this));
   }
-  closeModal();
+
+  openModal(e) {
+    e.preventDefault();
+    this.refs.modalform.classList.add("is-open");
+    this.refs.overlay.classList.add("is-open");
+    window.addEventListener("keydown", handleButtonPress);
+  }
+
+  closeModal() {
+    this.refs.modalform.classList.remove("is-open");
+    this.refs.overlay.classList.remove("is-open");
+    window.removeEventListener("keydown", handleButtonPress);
+  }
+
+  handleButtonPress(e) {
+    if (e.code !== "Escape") {
+      return;
+    }
+    closeModal();
+  }
 }
