@@ -16,9 +16,9 @@ img {
     margin: 0 auto;
     margin-bottom: 20px;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+    // &:last-child {
+    //   margin-bottom: 0;
+    // }
   }
 
   &-block {
@@ -100,9 +100,9 @@ img {
     &__link {
       width: 366px;
 
-      &:nth-last-child(-n+2) {
-        margin-bottom: 0;
-      }
+      // &:nth-last-child(-n+2) {
+      //   margin-bottom: 0;
+      // }
     }
 
     &-block {
@@ -126,9 +126,9 @@ img {
     &__link {
       width: 486px;
 
-      &:nth-last-child(-n+2) {
-        margin-bottom: 0;
-      }
+      // &:nth-last-child(-n+2) {
+      //   margin-bottom: 0;
+      // }
     }
 
     &-block {
@@ -146,7 +146,6 @@ img {
 .loadMore {
   display: block;
   margin: 0 auto;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 5px;
   color: white;
