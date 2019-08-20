@@ -2,7 +2,6 @@ class Search {
   constructor() {
     this.refs = {};
     this.refs.input = document.querySelector("search-form__field");
-    console.log('begin');
     this.refs.modalform = document.querySelector(".modal-form");
     this.refs.first_button = document.querySelector(".header__search");
     this.refs.overlay = document.querySelector(".modal-overlay");
@@ -11,7 +10,7 @@ class Search {
     this.refs.first_button.addEventListener("click", this.openModal.bind(this));
     this.refs.overlay.addEventListener("click", this.closeModal.bind(this));
     this.refs.closeModalBtn.addEventListener("click", this.closeModal.bind(this));
-    console.log('end');
+
   }
 
   openModal(e) {
