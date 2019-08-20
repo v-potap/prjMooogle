@@ -1,4 +1,5 @@
-import "../js/search";
+import search from "../js/search";
+
 class App {
   constructor() {
     this.refs = {};
@@ -23,9 +24,7 @@ class App {
 
   handleClickSearchInput(e) {
     e.currentTarget.classList.toggle('click');
-    openModal();
   };
-
 
 }
 
