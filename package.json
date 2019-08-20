@@ -9,6 +9,10 @@
     "html",
     "pages"
   ],
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions"
+  ],
   "license": "MIT",
   "dependencies": {
     "handlebars": "^4.1.2",
