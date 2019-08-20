@@ -119,4 +119,4 @@ class MovieDBService {
   }
 }
 
-new MovieDBService();
+export default new MovieDBService();
