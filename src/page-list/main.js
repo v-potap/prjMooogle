@@ -5,6 +5,7 @@ const posts = document.querySelector('.posts');
 const button = document.querySelector('loadMore');
 const moviesButton = document.getElementById('radio-movies');
 const seriesButton = document.getElementById('radio-series');
+const favouritesButton = document.getElementById('radio-favorities');
 let filmsData;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,27 +23,19 @@ posts.addEventListener('click', function(event) {
     localStorage.setItem('id', id);
   }
 
-
-
   if(buttonfavourite) {
     let favouriteMovies = localStorage.getItem('favouriteMovies');
 
     if ( favouriteMovies !== null) {
       favouriteMovies = JSON.parse(favouriteMovies);
-
     } else {
       favouriteMovies = [];
     }
 
-    // console.log('filmsData', filmsData);
-    // console.log('id :', id);
     favouriteMovies.push(filmsData.find(el => +id === el.id));
-    // console.log('favouriteMovies :', favouriteMovies);
+    localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies));
     localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies));
   }
-
-
-
 });
 
 const movieDB = 'https://api.themoviedb.org/3/';
@@ -71,6 +64,20 @@ function getSeriesInfo() {
   });
 }
 
+const localFavourites = JSON.parse(localStorage.getItem('favouriteMovies'));
+
+function getfavouritesInfo() {
+  return fetch(localFavourites)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    posts.innerHTML = '';
+    posts.insertAdjacentHTML('afterbegin', list(data));
+    filmsData = data.results;
+  });
+}
+console.log(localFavourites);
+
 function getMoviesGenres() {
   return fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=442f08ed580949109afb21f8d78ec790&language=en-US`)
   .then((response) => response.json())
@@ -95,9 +102,14 @@ getSeriesGenres()
 moviesButton.addEventListener('click', function() {
   getMovieInfo();
   localStorage.setItem('type', 'movie');
-})
+});
 
 seriesButton.addEventListener('click', function() {
   getSeriesInfo();
+  localStorage.setItem('type', 'series');
+});
+
+favouritesButton.addEventListener('click', function() {
+  getfavouritesInfo();
   localStorage.setItem('type', 'series');
 })
