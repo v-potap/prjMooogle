@@ -59,7 +59,7 @@
     font-size: 18px;
     margin-left: 33px;
     margin-bottom: 10px;
-    transition: .3s ease-in-out;
+    padding-top: 7px;
   }
 }
 .header__siteNavCat:hover {
@@ -67,6 +67,7 @@
 
   .item__icon   {
     fill: #78c0bc;
+    transition: .3s ease-in-out;
   }
   .header__siteNavCat-title {
     color: #78c0bc;
