@@ -2,93 +2,136 @@
 <html>
 
 <head>
-  <title>Contacts</title>
+  <title>Details</title>
   <meta charset="UTF-8">
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="pragma" content="no-cache" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport"
     content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
+    <%= require('html-loader!../globals/header.html') %>
 
-  <!-- <h1 class="page-title">
-    <i class="fas fa-map-marked-alt"></i>
-    Details
-  </h1> -->
-
-  <div class="your-class">
-    <div>your content</div>
-    <div>your content</div>
-    <div>your content</div>
-  </div>
-
-  <section class="details">
-    <div class="film">
+  <section class="film-section">
+    <div class="film-about-container">
       <div class="film-image-overlay">
-        <h3 class="film-info__title">Темные времена (2017)</h3>
+        <h3 class="film-info__title">Темные времена </h3><span class="film-release-date hidden-on-mobile"></span>
       </div>
       <img src="../img/film-image@X1.png" alt="" class="film-image">
       <div class="film-info">
-        <h3 class="film-info__title hidden-on-mobile">Темные времена (2017)</h3>
-        <ul class="film-info__select">
-          <li>icons</li>
-          <li>date</li>
-        </ul>
-        <table class="film-info__table hidden-on-mobile"></table>
+        <div class="film-info__select">
+          <div class="posts-block__button">
+            <div class="posts-block__button1">
+              <svg>
+                <use href="../img/sprite.svg#star-full"></use>
+              </svg>
+            </div>
+            <div class="posts-block__button2">
+              <svg>
+                <use href="../img/sprite.svg#bell"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="film-date hidden-on-tablet">date</div>
+        </div>
+
+        <!-- TABLE -->
+
+        <table class="film-info__table hidden-on-mobile">
+
+          <tbody>
+            <tr>
+              <td>Country</td>
+              <td class="film-country">США, Великобритания</td>
+            </tr>
+            <tr>
+              <td>Motto</td>
+              <td class="film-motto">«Никогда не сдавайся»</td>
+            </tr>
+            <tr>
+              <td>Director</td>
+              <td class="film-director">Джо Райт</td>
+            </tr>
+            <tr>
+              <td>Script</td>
+              <td class="film-script">Энтони МакКартен</td>
+            </tr>
+            <tr>
+              <td>Genre</td>
+              <td class="film-genres">драма, военный, биография, история</td>
+            </tr>
+            <tr>
+              <td>Runtime</td>
+              <td class="film-runtime">125 мин. / 02:05</td>
+            </tr>
+          </tbody>
+
+        </table>
+
+        <!-- ABOUT -->
+        <h3 class="about-title hidden-on-mobile">About the film</h3>
         <p class="film-info__about">История о первом и решающем шаге Уинстона Черчилля на посту премьер-министра
           Великобритании, получившего власть при чрезвычайных обстоятельствах. Успехи нацистской армии взбудоражили
           британское сообщество, но вопреки давлению и страху других политиков Черчилль отказывается идти на соглашение
           с Гитлером.</p>
       </div>
-      <div class="film-wrapper">
-        <div class="trailer">
-          <p class="trailer__title">Трейлер</p>
-          <iframe class="trailer__video" src="https://www.youtube.com/embed/SPc-oWXEhQQ" height="100%"
-            width="100%"></iframe>
-        </div>
-        <section class="sliders-section">
-          <%= require('html-loader!../globals/actors-slider.html') %>
+    </div>
 
+    <div class="film-wrapper">
 
-          <div class="pictures-slider-container  hidden-on-mobile">
-            <div class="slider__pictures">
-              <div class="film-image-item">
-                <img class="film-image" src="" alt="">
-              </div>
+      <!-- TRAILER -->
+
+      <section class="trailer">
+        <h3 class="trailer__title">Trailer</h3>
+        <iframe class="trailer__video" src="https://www.youtube.com/embed/SPc-oWXEhQQ" height="100%"
+          width="100%"></iframe>
+      </section>
+
+      <!-- SLIDERS -->
+
+      <section class="sliders-section">
+        <%= require('html-loader!../globals/actors-slider.html') %>
+        <%= require('html-loader!../globals/pictures-slider.html') %>
+      </section>
+
+    </div>
+
+    <!-- REVIEWS-->
+
+    <section class="reviews-wrapper">
+      <h3 class="reviews-title">Reviews</h3>
+      <ul class="reviews-list">
+        <li class="reviews__article">
+          <img class="review-picture" src="../img/yana-img.png" alt="">
+          <div class="review-container">
+            <div class="review-sub-container">
+              <p class="review-name">Виктория Гуменюк</p>
+              <p class="review-time">28 дек</p>
             </div>
+            <p class="review-text">Молодцы, хороший фильм.
+            </p>
           </div>
-      </div>
-  </section>
-
-  <section class="reviews-wrapper">
-    <p class="reviews-title">Отзывы</p>
-    <ul class="reviews-list">
-      <li class="reviews__article">
-        <img class="review-picture" src="../img/yana-img.png" alt="">
-        <div class="review-container">
-          <p class="review-name">Виктория Гуменюк</p>
-          <p class="review-text">Молодцы, хороший фильм.
-          </p>
-        </div>
-        <p class="review-time">28 дек</p>
-      </li>
-    </ul>
-  </section>
+        </li>
+        <li class="reviews__article">
+            <img class="review-picture" src="../img/yana-img.png" alt="">
+            <div class="review-container">
+              <div class="review-sub-container">
+                <p class="review-name">Виктория Гуменюк</p>
+                <p class="review-time">28 дек</p>
+              </div>
+              <p class="review-text">Молодцы, хороший фильм.
+              </p>
+            </div>
+          </li>
+      </ul>
+    </section>
 
   </section>
-
-
-
-  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="slick/slick.min.js"></script> -->
+  <%= require('html-loader!../globals/footer.html') %>
 </body>
-
 
 </html>

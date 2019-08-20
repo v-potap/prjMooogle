@@ -6,6 +6,9 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: #757575;
+
 }
 
 .clearfix::after {
@@ -35,27 +38,26 @@ input[type="radio"].visually-hidden {
   overflow: hidden;
 }
 
+// ========
 
-
-.film {
-  background-color: red;
+.film-section {
   max-width: 346px;
-  margin: 7px;
-  padding: 0;
+  margin: 55px auto 0 auto;
+  padding: 7px;
 }
 
 .hidden-on-mobile {
   display: none;
 }
 
-.film {
+.film-about-container {
   position: relative;
-
 }
 
 .film-image {
   height: 180px;
-  width: 346px;
+  object-fit: cover;
+  // width: 346px;
 }
 
 .film-image-overlay {
@@ -72,6 +74,14 @@ input[type="radio"].visually-hidden {
   bottom: 22px;
   left: 16px;
   margin: 0px;
+  font-weight: 500;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.film-release-date {
+  color: #372c48;
+  font-weight: 500;
 }
 
 .film-info__select {
@@ -80,11 +90,55 @@ input[type="radio"].visually-hidden {
   list-style: none;
   margin: 8px;
   padding: 16px 0px;
+}
+
+.film-date {
+  color: #addad6;
 
 }
 
+// SELECT BUTTONS
+.posts-block__button {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: #372c48;
+    transition: 0.3s;
+
+    &:hover {
+      fill: gold;
+    }
+  }
+
+  &1 {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  &2 {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+}
+
+// ABOUT
+
 .film-info__about {
-  margin: 8px;
+  margin: 8px 0 36px;
+  font-size: 16px;
+}
+
+.film-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .film-wrapper,
@@ -92,35 +146,278 @@ input[type="radio"].visually-hidden {
   margin: 8px;
 }
 
-.film-wrapper {
-  margin-bottom: 30px;
-}
 // TRAILER
 
 .trailer__title,
-.reviews-title {
+.reviews-title,
+.about-title {
   font-size: 16px;
   padding: 16px 0;
+  margin: 0;
 }
 
 .trailer__video {
-  width: 330px;
   height: 200px;
 }
 
 // REVIEWS
 
-.review-picture{
+.reviews__article {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.review-picture {
   width: 43px;
   height: 43px;
   border-radius: 50%;
+  margin-right: 16px;
 }
 
-.reviews__article {
+.review-name {
+  color: rgba(35, 31, 32, 255);
+  font-size: 14px;
+}
+
+.review-text {
+  color: #757575;
+  font-size: 14px;
+}
+
+.review-container {
+  width: 276px;
+}
+
+.review-sub-container {
   display: flex;
   justify-content: space-between;
 }
 
-.review-container {
-  width: 230px;
+// @ MEDIA
+
+@media (min-width: 768px) {
+
+  .hidden-on-tablet {
+    display: none;
+  }
+
+  .film-section {
+    max-width: 768px;
+    padding: 20px;
+  }
+
+  .hidden-on-mobile {
+    display: inline-block;
+  }
+
+  // ABOUT
+
+  .film-about-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .film-info__about {
+    margin: 0;
+  }
+
+  .film-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 290px;
+    height: 20px;
+    width: 200px;
+  }
+
+  .film-info__title {
+    color: rgba(55, 44, 72, 255);
+    position: static;
+    font-size: 16px;
+  }
+
+  .film-info__about {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .film-image {
+    height: 296px;
+    width: 274px;
+    margin-right: 14px;
+  }
+
+  .film-wrapper,
+  .reviews-wrapper {
+    margin: 0;
+  }
+
+  .film-info__select {
+    margin: 0;
+    padding: 30px 0 20px 0;
+  }
+
+  // TABLE
+
+  .film-info__table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 440px;
+    font-size: 12px;
+  }
+
+  tr {
+    line-height: 30px;
+  }
+
+  tr:nth-of-type(odd) {
+    background-color: #addad6;
+  }
+
+  td:nth-of-type(odd) {
+    text-indent: 14px;
+  }
+
+  td:nth-of-type(even) {
+    width: 100%;
+    text-indent: 40px;
+
+  }
+
+  // TRAILER
+
+  .film-wrapper {
+    flex-direction: column;
+  }
+
+  .trailer {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .trailer__title {
+    text-align: left;
+  }
+
+  .trailer__video {
+    width: 368px;
+    height: 226px;
+  }
+
+  // REVIEWS
+
+  .review-picture {
+    width: 59px;
+    height: 59px;
+    margin-right: 16px;
+  }
+
+  .review-container {
+    width: 645px;
+  }
+
+  .review-sub-container {
+    margin-bottom: 20px;
+  }
+
+  .review-time,
+  .review-name,
+  .review-text {
+    font-size: 10px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .film-section {
+    max-width: 1024px;
+  }
+
+  .film-image {
+    display:block;
+    height: 434px;
+    width: 400px;
+    margin-right: 0;
+  }
+
+  .film-image-overlay {
+    left: 430px;
+    height: 24px;
+    width: 230px;
+  }
+
+  .film-info__title {
+    font-size: 20px;
+  }
+
+  // ABOUT
+
+  .film-info {
+    width: 546px;
+
+  }
+
+  .film-info__about {
+    font-size: 16px;
+    line-height: 1.2;
+    width: 546px;
+  }
+
+  // TABLE
+
+  .film-info__table {
+    width: 546px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  tr {
+    line-height: 34px;
+  }
+
+  .trailer__title,
+  .reviews-title,
+  .about-title {
+    font-size: 20px;
+  }
+
+  // TRAILER
+
+  .trailer {
+    margin-bottom: 70px;
+  }
+
+  .trailer__title {
+    padding: 30px 0;
+  }
+
+  .trailer__video {
+    width: 712px;
+    height: 436px;
+  }
+
+  // REVIEWS
+
+  .review-picture {
+    width: 83px;
+    height: 83px;
+  }
+
+  .review-container {
+    width: 882px;
+  }
+
+  .review-time,
+  .review-name,
+  .review-text {
+    font-size: 14px;
+  }
+
+  .reviews-wrapper {
+    margin-bottom: 40px;
+  }
+}
+
+.footer {
+  height: 90px;
 }
