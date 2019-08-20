@@ -1,7 +1,6 @@
 import '../scss/main.scss';
 import './page.scss';
 import list from './list.hbs';
-import '../js/header';
 const posts = document.querySelector('.posts');
 const button = document.querySelector('loadMore');
 const moviesButton = document.getElementById('radio-movies');

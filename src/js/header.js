@@ -1,6 +1,5 @@
-import "../js/search";
-//import openModal from "./search";
-console.log('object');
+import search from "../js/search";
+
 class App {
   constructor() {
     this.refs = {};
@@ -25,10 +24,7 @@ class App {
 
   handleClickSearchInput(e) {
     e.currentTarget.classList.toggle('click');
-    openModal();
-    console.log('click');
   };
-
 
 }
 
