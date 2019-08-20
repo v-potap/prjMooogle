@@ -10,6 +10,8 @@ module.exports = {
 
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
+    header: './src/js/header.js',
+    search: './src/js/search.js',
     index: './src/page-list/main.js',
     details: './src/page-details/main.js',
   },
@@ -95,13 +97,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/page-list/index.html',
       inject: true,
-      chunks: ['index'],
+      chunks: ['header', 'index'],
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
       template: './src/page-details/details.html',
       inject: true,
-      chunks: ['details'],
+      chunks: ['header', 'details'],
       filename: 'details.html'
     }),
     new WebpackBar()

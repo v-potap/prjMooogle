@@ -1,16 +1,45 @@
+.modal-form.is-open {
+  visibility: visible;
+}
+
 .modal-form {
   margin: 0;
   padding: 0;
-  padding-top: 60px;
-  width: 360px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 360px;
   background-color: #77c1bb;
+  visibility: hidden;
+  z-index: 11000;
+}
+
+.position-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  visibility: hidden;
+  z-index: 10000;
+}
+
+.modal-overlay.is-open {
+  visibility: visible;
 }
 
 .modal-form__image {
   width: 122px;
   height: 115px;
-  margin: 0 auto;
+  margin: auto;
   display: block;
 }
 
@@ -42,7 +71,7 @@
 
 .search-form__field {
   border: 0;
-  width: 184px;
+  width: 190px;
   padding-left: 10px;
   font-family: "Roboto";
   font-size: 18px;
@@ -71,15 +100,48 @@
   background-color: #77c1bb;
 }
 
+.modal-form__button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  fill: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.modal-form__button--elem {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  background-color: #77c1bb;
+}
+
+.modal-form__button:hover > .modal-form__button--elem,
+.modal-form__button:focus > .modal-form__button--elem {
+  fill: #fce38a;
+}
+
 @media (min-width: 768px) {
   .modal-form {
-    width: 768px;
     height: 370px;
   }
-
   .modal-form__text {
     font-size: 24px;
     font-weight: 600;
+  }
+
+  .position-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%)
   }
 
   .search-form {
@@ -90,7 +152,9 @@
     width: 280px;
     border-bottom: 2px solid #ffffff;
   }
+
   .search-form__field {
+    width: 242px;
     padding-left: 15px;
   }
 
@@ -100,28 +164,30 @@
     height: 15px;
   }
 
-  .search-form__button {
-    visibility: hidden;
+  .search-form__button--elem {
+    padding-top: 2px;
+    width: 18px;
+    height: 18px;
+  }
+  .modal-form__button--elem {
+    width: 16px;
+    height: 16px;
   }
 }
-
 @media (min-width: 1024px) {
   .modal-overlay {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 1024px;
-    height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
   }
 
   .modal-form {
+    height: 600px;
+  }
+
+  .position-form {
     position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: 100px;
-    width: 1024px;
-    height: 620px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-48%, -55%)
   }
 
   .modal-form__image {
@@ -151,6 +217,6 @@
   }
 
   .search-form__field {
-    width: 300px;
-}
+    width: 382px;
+  }
 }

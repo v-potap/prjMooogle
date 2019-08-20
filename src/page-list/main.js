@@ -5,22 +5,44 @@ const posts = document.querySelector('.posts');
 const button = document.querySelector('loadMore');
 const moviesButton = document.getElementById('radio-movies');
 const seriesButton = document.getElementById('radio-series');
+const favouritesButton = document.getElementById('radio-favorities');
+let filmsData;
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded', 'page-about');
+  // console.log('DOMContentLoaded', 'page-about');
   document.body.insertAdjacentHTML('beforeend', list());
 });
 
 posts.addEventListener('click', function(event) {
-  // event.preventDefault();
-  // console.log(event.target.nodeName);
-  console.log(event.target.closest('.posts-block__button1'));
-  const blockLink = event.target.closest('.posts-block');
-  console.log(blockLink);
+  const blockLink = event.target.closest('.posts__link');
   const buttonfavourite = event.target.closest('.posts-block__button1');
+  // console.log(starButton);
+  // console.log('blockLink', blockLink);
+  // console.log('event.target :', event.target);
   const id = blockLink.dataset.id;
   if(blockLink) {
     localStorage.setItem('id', id);
+  }
+
+  if(buttonfavourite) {
+    let favouriteMovies = localStorage.getItem('favouriteMovies');
+    const clickedMovie = (filmsData.find(el => +id === el.id)).id;
+
+    if ( favouriteMovies !== null) {
+      favouriteMovies = JSON.parse(favouriteMovies);
+    } else {
+      favouriteMovies = [];
+    }
+
+    if (!favouriteMovies.find(movie => movie.id === clickedMovie)) {
+      favouriteMovies.push(filmsData.find(el => +id === el.id));
+      console.log(true);
+    } else {
+      favouriteMovies = favouriteMovies.filter(el => el.id !== clickedMovie);
+      console.log(false);
+    }
+
+    localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies));
   }
 });
 
@@ -32,9 +54,10 @@ function getMovieInfo() {
   return fetch(`${movieDB}discover/movie?api_key=${apiKey}&page=${page}&language=en-US&region=US&sort_by=popularity.desc`) // if series: tv instead movies
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     posts.innerHTML = '';
     posts.insertAdjacentHTML('afterbegin', list(data));
+    filmsData = data.results;
   });
 }
 
@@ -42,10 +65,19 @@ function getSeriesInfo() {
   return fetch(`${movieDB}discover/tv?api_key=${apiKey}&page=${page}&language=en-US&region=US&sort_by=popularity.desc`) // if series: tv instead movies
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     posts.innerHTML = '';
     posts.insertAdjacentHTML('afterbegin', list(data));
+    filmsData = data.results;
   });
+}
+
+
+function getfavouritesInfo() {
+  const localFavourites = JSON.parse(localStorage.getItem('favouriteMovies'));
+  posts.innerHTML = '';
+  let blockFavourites = list({results: localFavourites});
+  posts.insertAdjacentHTML('afterbegin', blockFavourites);
 }
 
 function getMoviesGenres() {
@@ -66,23 +98,19 @@ function getSeriesGenres() {
 
 getMovieInfo();
 // getSeriesInfo();
-getMoviesGenres();
-getSeriesGenres()
+// getMoviesGenres();
+// getSeriesGenres()
 
 moviesButton.addEventListener('click', function() {
   getMovieInfo();
   localStorage.setItem('type', 'movie');
-})
+});
 
 seriesButton.addEventListener('click', function() {
   getSeriesInfo();
   localStorage.setItem('type', 'series');
+});
+
+favouritesButton.addEventListener('click', function() {
+  getfavouritesInfo();
 })
-
-// setTimeout(() => {
-//   const favouriteButton = document.querySelector('.posts-block__button1');
-
-//   favouriteButton.addEventListener('click', function() {
-//     alert('Hello!');
-//   });
-// }, 1000);
