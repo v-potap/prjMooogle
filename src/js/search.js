@@ -1,4 +1,3 @@
-export default new Search ();
 class Search {
   constructor() {
     this.refs = {};
@@ -33,3 +32,5 @@ class Search {
     closeModal();
   }
 }
+
+export default new Search();
