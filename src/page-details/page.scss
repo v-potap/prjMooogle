@@ -56,6 +56,7 @@ input[type="radio"].visually-hidden {
 
 .film-image {
   height: 180px;
+  object-fit: cover;
   // width: 346px;
 }
 
@@ -75,6 +76,12 @@ input[type="radio"].visually-hidden {
   margin: 0px;
   font-weight: 500;
   font-size: 20px;
+  display: inline-block;
+}
+
+.film-release-date {
+  color: #372c48;
+  font-weight: 500;
 }
 
 .film-info__select {
