@@ -1,21 +1,36 @@
 <div class="modal-overlay"></div>
-<div class="modal-form">
-  <img class="modal-form__image" src="./img/moogle-logo-modal.png" alt="moogle-logo" />
-  <p class="modal-form__text">Mooogle</p>
-  <form class="search-form">
-    <svg class="search-form__picture">
-      <use href="img/modal-defs.svg#icon-search-modal"></use>
-    </svg>
-    <input
-      class="search-form__field"
-      type="text"
-      name="search"
-      placeholder="Search"
-    />
-    <button class="search-form__button">
-      <svg class="search-form__button--elem">
-        <use href="img/modal-defs.svg#icon-arrow-modal"></use>
-      </svg>
-    </button>
-  </form>
-</div>
+    <div class="modal-form">
+      <div class="position-form">
+      <img
+        class="modal-form__image"
+        src="../img/moogle-logo-modal.png"
+        alt="moogle-logo"
+      />
+      <p class="modal-form__text">Mooogle</p>
+      <form class="search-form" id="modal-search-form">
+        <svg class="search-form__picture">
+          <use href="img/modal-defs.svg#icon-search-modal"></use>
+        </svg>
+        <input
+          class="search-form__field"
+          type="text"
+          name="mdsearch"
+          placeholder="Search"
+        />
+        <button class="search-form__button">
+          <svg class="search-form__button--elem">
+            <use href="img/modal-defs.svg#icon-arrow-modal"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <button
+        type="button"
+        class="modal-form__button"
+        data-action="close-modal-form"
+      >
+        <svg class="modal-form__button--elem">
+          <use href="img/cross-modal.svg#icon-modal-cross"></use>
+        </svg>
+      </button>
+  </div>
