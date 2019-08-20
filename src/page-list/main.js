@@ -16,10 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 posts.addEventListener('click', function(event) {
   const blockLink = event.target.closest('.posts__link');
   const buttonfavourite = event.target.closest('.posts-block__button1');
-  // console.log(starButton);
-  // console.log('blockLink', blockLink);
-  // console.log('event.target :', event.target);
+  // const favouriteButton = document.querySelector('.posts-block__star');
   const id = blockLink.dataset.id;
+
   if(blockLink) {
     localStorage.setItem('id', id);
   }
@@ -37,8 +36,10 @@ posts.addEventListener('click', function(event) {
     if (!favouriteMovies.find(movie => movie.id === clickedMovie)) {
       favouriteMovies.push(filmsData.find(el => +id === el.id));
       console.log(true);
+      buttonfavourite.classList.add('button_color');
     } else {
       favouriteMovies = favouriteMovies.filter(el => el.id !== clickedMovie);
+      buttonfavourite.classList.remove('button_color');
       console.log(false);
     }
 
@@ -55,6 +56,15 @@ function getMovieInfo() {
   .then((response) => response.json())
   .then((data) => {
     // console.log(data);
+    let favor = localStorage.getItem('favouriteMovies');
+    if ( favor !== null) {
+      favor = JSON.parse(favor);
+    } else {
+      favor = [];
+    }
+    favor = favor.map(el => el.id);
+    console.log(favor);
+
     posts.innerHTML = '';
     posts.insertAdjacentHTML('afterbegin', list(data));
     filmsData = data.results;
