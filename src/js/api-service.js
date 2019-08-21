@@ -49,7 +49,7 @@ class MovieDBService {
       `${this.movieDB}` +
       `${this.genres}` +
       `${this.storage}` +
-      `?` +
+      `/list?` +
       `api_key=${this.apiKey}&` +
       `language=en-US`
     );
@@ -59,8 +59,8 @@ class MovieDBService {
     let infoItems = [];
     try {
       const response = await fetch(this.getGenresStr());
-      const json = response.json();
-      infoItems = json.hits;
+      const json = await response.json();
+      infoItems = json.genres;
     } catch (err) {
       console.log(err);
     }
