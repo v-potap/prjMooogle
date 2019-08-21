@@ -157,9 +157,9 @@
   height: calc(100vh - 55px);
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 25;
-  visibility: hidden;
+  display: none;
   &.show {
-    visibility: visible;
+    display: block;
     .header__siteNavMenu {
       transform: none;
     }
