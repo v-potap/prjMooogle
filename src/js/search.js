@@ -43,7 +43,7 @@ class Search {
     inputtwo.value = "";
     console.log(inputValue);
     movieDBService.setQuery(inputValue);
-    const result = await movieDBService.getSearch();
+    const result = await movieDBService.getInfo();
     console.log(result);
   }
 }
