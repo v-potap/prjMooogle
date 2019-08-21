@@ -5,7 +5,7 @@ img {
 }
 
 .posts {
-  padding-top: 160px;
+  padding-top: 75px;
   width: 346px;
   margin: 0 auto;
   display: block;
@@ -62,10 +62,6 @@ img {
         height: 18px;
         fill: white;
         transition: 0.3s;
-
-        &:hover {
-          fill: gold;
-        }
       }
 
       &1 {
@@ -93,6 +89,7 @@ img {
 
 @media (min-width: 768px) {
   .posts {
+    padding-top: 160px;
     width: 758px;
     display: flex;
     flex-wrap: wrap;
@@ -119,6 +116,7 @@ img {
 
 @media (min-width: 1024px) {
   .posts {
+    padding-top: 160px;
     width: 1014px;
     display: flex;
     flex-wrap: wrap;
@@ -156,5 +154,7 @@ img {
 }
 
 .button_color {
-  fill: gold;
+  svg {
+    fill: gold;
+  }
 }
