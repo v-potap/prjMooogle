@@ -30,16 +30,20 @@
 .footer-list {
   margin: 0 auto;
   padding: 0;
-  width: 280px;
+  width: 285px;
   display: flex;
   list-style: none;
   justify-content: space-between;
   text-decoration: none;
 }
 
+.footer-item {
+  text-align: center;
+  width: 65px;
+}
+
 .footer-item_link {
   text-decoration: none;
-  padding-left: 20px;
   color: #372c48;
   font-family: Roboto, sans-serif;
   font-size: 14px;
@@ -76,6 +80,11 @@
 
 .footer-list {
   width: 380px;
+}
+
+.footer-item {
+  text-align: center;
+  width: 80px;
 }
 
 .footer-item_link {
