@@ -5,14 +5,18 @@ img {
 }
 
 .posts {
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
   padding-top: 75px;
   width: 346px;
   margin: 0 auto;
   display: block;
+  min-height: calc(100vh - 159px - 85px);
 
   &__link {
     position: relative;
     width: 346px;
+    height: 100%;
     margin: 0 auto;
     margin-bottom: 20px;
 
@@ -93,6 +97,7 @@ img {
     width: 758px;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 
     &__link {
       width: 366px;
@@ -142,11 +147,13 @@ img {
 }
 
 .loadMore {
-  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  display: none;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 5px;
-  color: white;
+  color: #000000;
   background: #77c1bb;
   border: 1px #00000067 solid;
   border-radius: 2px;
