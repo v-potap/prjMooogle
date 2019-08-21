@@ -31,7 +31,7 @@ class MovieDBService {
     let infoItems = [];
     try {
       const response = await fetch(this.getInfoStr());
-      const json = response.json();
+      const json = await response.json();
       infoItems = json.results;
     } catch (err) {
       console.log(err);
@@ -85,7 +85,7 @@ class MovieDBService {
     let infoItems = [];
     try {
       const response = await fetch(this.getSearchStr());
-      const json = response.json();
+      const json = await response.json();
       infoItems = json.hits;
     } catch (err) {
       console.log(err);
