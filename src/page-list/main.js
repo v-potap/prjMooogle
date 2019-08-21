@@ -128,6 +128,10 @@ async function showInfo() {
 
   posts.insertAdjacentHTML("beforeend", list(newData));
   filmsData = newData;
+
+  if (filmsData.length >= 20) {
+    document.querySelector('.loadMore').classList.add('visible');
+  }
 }
 
 function showFavoritiesInfo() {
