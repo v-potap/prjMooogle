@@ -42,6 +42,8 @@ class Search {
     const inputValue =  inputtwo.value;
     inputtwo.value = '';
     console.log(inputValue);
+    // movieDBService.getSearch();
+    // movieDBService.setQuery(inputValue);
 }
 }
 
