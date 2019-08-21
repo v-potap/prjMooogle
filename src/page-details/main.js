@@ -4,28 +4,13 @@ import 'slick-carousel';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 import '../scss/main.scss';
-
 import './page.scss';
+import actorTemplate from "../templates/actors.hbs";
+import pictureTemplate from "../templates/pictures.hbs";
 
 const localId = localStorage.getItem('id');
 const localType = localStorage.getItem('type');
 
-// slider__actors
-
-$('.slider-actors').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 1000,
-});
-
-$('.slider-pictures').slick({
-  infinite: true,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-});
-
-/* <script type="text/javascript" src="slick/slick.min.js"></script> */
 const movieDB = 'https://api.themoviedb.org/3/';
 const apiKey = '442f08ed580949109afb21f8d78ec790';
 const page = 1;
@@ -42,7 +27,7 @@ function getMovieInfo() {
       document.querySelector('.film-release-date').textContent = `${filmYear})`;
       document.querySelector('.film-date').textContent = filmYear;
       document.querySelector('.film-country').textContent = joinElements(data.production_countries);
-      document.querySelector('.film-image').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+      document.querySelector('.film-image').src = `https://image.tmdb.org/t/p/original${data.poster_path}`;
       document.querySelector('.film-genres').textContent = joinElements(data.genres);
       document.querySelector('.film-motto').textContent = `"${data.tagline}"`;
       document.querySelector('.film-runtime').textContent = `${data.runtime} min / ${Math.round(data.runtime / 60)} h`;
@@ -66,27 +51,58 @@ function getPeopleInfo() {
     .then((data) => {
       console.log(data);
       const directors = [];
-      data.crew.forEach(function(entry){
+      data.crew.forEach(function (entry) {
         if (entry.job === 'Director') {
           directors.push(entry.name);
-      }
+        }
         return directors.join(', ');
       });
       document.querySelector('.film-director').textContent = directors;
 
       const authors = [];
-      data.crew.forEach(function(entry){
+      data.crew.forEach(function (entry) {
         if (entry.job === "Screenplay") {
           authors.push(entry.name);
-      }
+        }
         return authors;
       })
-
       document.querySelector('.film-script').textContent = authors;
+
+      // ACTORS SLIDER
+      console.log('data-- :', data);
+      const actorsSlider = document.querySelector('.slider-actors');
+      // console.log('actorTemplate :', actorTemplate(data.cast));
+      actorsSlider.insertAdjacentHTML('beforeend', actorTemplate(data.cast));
+
+      // SLICK ACTORS SLIDER
+
+      $('.slider-actors').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1000,
+      });
+
+
+      // function createActorsSlider(data) {
+      //   // const readySlider = .map(menuItem => actorsSlider(menuItem)).join("");
+
+      //   // menuList.menu_ul.insertAdjacentHTML("beforeend", readyMenu);
+      // }
+      // createActorsSlider(menuData);
+
+
+      // document.querySelector('.actor-item__name').textContent = actorName();
+
+      // function actorName(actors = data.cast) {
+      //   actors.forEach((actor) => {
+      //     console.log('actor.name :', actor.name);
+      //     return actor.name;
+      //   })
+      // }
 
     })
 }
-
 getPeopleInfo()
 
 // function genreName (genres = data.genres){
@@ -113,13 +129,41 @@ function getMovieTrailer() {
       console.log('data:', data);
 
       console.log('data.results[0].key :', data.results[0].key);
-
-
       document.querySelector('.trailer__video').src = `https://www.youtube.com/embed/${data.results[0].key}`;
+    });
+}
+getMovieTrailer();
+
+// PICTURES SLIDER
 
 
+function getMoviePictures() {
+  return fetch(`${movieDB}movie/${localId}/images?api_key=${apiKey}`)
+  // return fetch(`https://api.themoviedb.org/3/movie/299534/images?api_key=442f08ed580949109afb21f8d78ec790`)
+    .then((response) => response.json())
+    .then((data) => {
+
+      console.log('data-backdrops:', data);
+
+      const picturesSlider = document.querySelector('.slider-pictures');
+      console.log(picturesSlider);
+      // console.log('pictureTemplate(data.backdrops) :', pictureTemplate(data.backdrops));
+      picturesSlider.insertAdjacentHTML('beforeend', pictureTemplate(data.backdrops));
+
+      $('.slider-pictures').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+      });
 
     });
 }
+getMoviePictures();
 
-getMovieTrailer()
+// SLICK PICTURES SLIDER
+
+// $('.slider-pictures').slick({
+//   infinite: true,
+//   slidesToShow: 4,
+//   slidesToScroll: 1,
+// });

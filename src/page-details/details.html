@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <%= require('html-loader!../globals/header.html') %>
+  <%= require('html-loader!../globals/header.html') %>
+  <%= require('html-loader!../globals/search.html') %>
 
   <section class="film-section">
     <div class="film-about-container">
@@ -87,15 +88,27 @@
 
       <section class="trailer">
         <h3 class="trailer__title">Trailer</h3>
-        <iframe class="trailer__video" src="https://www.youtube.com/embed/SPc-oWXEhQQ" height="100%"
-          width="100%"></iframe>
+        <iframe class="trailer__video" src="" height="100%" width="100%"></iframe>
       </section>
 
       <!-- SLIDERS -->
 
       <section class="sliders-section">
-        <%= require('html-loader!../globals/actors-slider.html') %>
-        <%= require('html-loader!../globals/pictures-slider.html') %>
+        <div class="actor-slider-container">
+          <h3 class="slider-title">Actors</h3>
+          <div class="slider-actors">
+            <!-- ACTORS HBS -->
+          </div>
+        </div>
+
+        <div class="pictures-slider-container  hidden-on-mobile">
+          <h3 class="slider-title">Images from film</h3>
+          <div class="slider-pictures">
+            <!-- PICTURES HBS -->
+          </div>
+        </div>
+
+        <!-- <%= require('html-loader!../globals/pictures-slider.html') %> -->
       </section>
 
     </div>
@@ -117,16 +130,16 @@
           </div>
         </li>
         <li class="reviews__article">
-            <img class="review-picture" src="../img/yana-img.png" alt="">
-            <div class="review-container">
-              <div class="review-sub-container">
-                <p class="review-name">Виктория Гуменюк</p>
-                <p class="review-time">28 дек</p>
-              </div>
-              <p class="review-text">Молодцы, хороший фильм.
-              </p>
+          <img class="review-picture" src="../img/yana-img.png" alt="">
+          <div class="review-container">
+            <div class="review-sub-container">
+              <p class="review-name">Виктория Гуменюк</p>
+              <p class="review-time">28 дек</p>
             </div>
-          </li>
+            <p class="review-text">Молодцы, хороший фильм.
+            </p>
+          </div>
+        </li>
       </ul>
     </section>
 
