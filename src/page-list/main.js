@@ -9,24 +9,27 @@ const seriesButton = document.getElementById("radio-series");
 const favouritesButton = document.getElementById("radio-favorities");
 let filmsData;
 
-document.addEventListener("DOMContentLoaded", () => {
-  // console.log('DOMContentLoaded', 'page-about');
-  document.body.insertAdjacentHTML("beforeend", list());
-});
-
 posts.addEventListener('click', function(event) {
+  if (event.target === event.currentTarget) {
+    return
+  }
   const blockLink = event.target.closest('.posts__link');
   const buttonfavourite = event.target.closest('.posts-block__button1');
-  // const favouriteButton = document.querySelector('.posts-block__star');
   const id = blockLink.dataset.id;
+  const title = blockLink.dataset.title;
 
   if(blockLink) {
     localStorage.setItem('id', id);
+    if(!title) {
+      localStorage.setItem("type", "series");
+    } else {
+      localStorage.setItem("type", "movie");
+    }
   }
 
   if (buttonfavourite) {
     let favouriteMovies = localStorage.getItem("favouriteMovies");
-    const clickedMovie = filmsData.find(el => +id === el.id).id;
+    const clickedMovie = (filmsData.find(el => +id === el.id) || {}).id;
 
     if (favouriteMovies !== null) {
       favouriteMovies = JSON.parse(favouriteMovies);
@@ -34,14 +37,15 @@ posts.addEventListener('click', function(event) {
       favouriteMovies = [];
     }
 
-    if (!favouriteMovies.find(movie => movie.id === clickedMovie)) {
+    if (clickedMovie && !favouriteMovies.find(movie => movie.id === clickedMovie)) {
       favouriteMovies.push(filmsData.find(el => +id === el.id));
-      console.log(true);
       buttonfavourite.classList.add('button_color');
     } else {
-      favouriteMovies = favouriteMovies.filter(el => el.id !== clickedMovie);
+      favouriteMovies = favouriteMovies.filter(el => el.id !== (clickedMovie || +id));
       buttonfavourite.classList.remove('button_color');
-      console.log(false);
+      if (localStorage.getItem("activeFavourites", "favourites")) {
+        blockLink.remove();
+      }
     }
 
     localStorage.setItem("favouriteMovies", JSON.stringify(favouriteMovies));
@@ -56,7 +60,7 @@ function getMovieInfo() {
   return fetch(`${movieDB}discover/movie?api_key=${apiKey}&page=${page}&language=en-US&region=US&sort_by=popularity.desc`) // if series: tv instead movies
   .then((response) => response.json())
   .then((data) => {
-    // console.log(data);
+
     let favor = localStorage.getItem('favouriteMovies');
     if ( favor !== null) {
       favor = JSON.parse(favor);
@@ -64,23 +68,46 @@ function getMovieInfo() {
       favor = [];
     }
     favor = favor.map(el => el.id);
-    console.log(favor);
+
+    const newData = data.results.map(el => {
+      if(favor.includes(el.id)) {
+          el.fav = true;
+
+      }
+      return el;
+    });
 
     posts.innerHTML = '';
-    posts.insertAdjacentHTML('afterbegin', list(data));
-    filmsData = data.results;
+    posts.insertAdjacentHTML('afterbegin', list(newData));
+    filmsData = newData;
   });
 }
 
 function getSeriesInfo() {
   return fetch(
     `${movieDB}discover/tv?api_key=${apiKey}&page=${page}&language=en-US&region=US&sort_by=popularity.desc`
-  ) // if series: tv instead movies
+  )
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
+
+      let favor = localStorage.getItem('favouriteMovies');
+    if ( favor !== null) {
+      favor = JSON.parse(favor);
+    } else {
+      favor = [];
+    }
+    favor = favor.map(el => el.id);
+
+    const newData = data.results.map(el => {
+      if(favor.includes(el.id)) {
+          el.fav = true;
+
+      }
+      return el;
+    });
+
       posts.innerHTML = "";
-      posts.insertAdjacentHTML("afterbegin", list(data));
+      posts.insertAdjacentHTML("afterbegin", list(data.results));
       filmsData = data.results;
     });
 }
@@ -88,45 +115,26 @@ function getSeriesInfo() {
 function getfavouritesInfo() {
   const localFavourites = JSON.parse(localStorage.getItem("favouriteMovies"));
   posts.innerHTML = "";
-  let blockFavourites = list({ results: localFavourites });
+  let blockFavourites = list(localFavourites);
   posts.insertAdjacentHTML("afterbegin", blockFavourites);
 }
 
-function getMoviesGenres() {
-  return fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=442f08ed580949109afb21f8d78ec790&language=en-US`
-  )
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    });
-}
-
-function getSeriesGenres() {
-  return fetch(
-    `https://api.themoviedb.org/3/genre/tv/list?api_key=442f08ed580949109afb21f8d78ec790&language=en-US`
-  )
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    });
-}
-
 getMovieInfo();
-// getSeriesInfo();
-// getMoviesGenres();
-// getSeriesGenres()
 
 moviesButton.addEventListener("click", function() {
   getMovieInfo();
-  localStorage.setItem("type", "movie");
+  localStorage.setItem("activeFavourites", "");
 });
 
 seriesButton.addEventListener("click", function() {
   getSeriesInfo();
-  localStorage.setItem("type", "series");
+  localStorage.setItem("activeFavourites", "");
 });
 
 favouritesButton.addEventListener("click", function() {
   getfavouritesInfo();
+  (document.querySelectorAll('.posts-block__button1')).forEach(element => {
+    element.classList.add('button_color');
+  });
+  localStorage.setItem("activeFavourites", "favourites");
 });
