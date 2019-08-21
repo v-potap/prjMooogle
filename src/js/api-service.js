@@ -32,7 +32,7 @@ class MovieDBService {
     try {
       const response = await fetch(this.getInfoStr());
       const json = response.json();
-      infoItems = json.hits;
+      infoItems = json.results;
     } catch (err) {
       console.log(err);
     }
