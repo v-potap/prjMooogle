@@ -1,11 +1,14 @@
 import search from "../js/search";
+import itemCategory from "../templates/category.hbs";
+import movieDBService from "../js/api-service";
 
 class App {
   constructor() {
     this.refs = {};
     this.refs.navButton = document.querySelector('.header__siteNav__button');
     this.refs.siteNavMenu = document.querySelector('.header__overlay');
-    this.refs.menuCategory = document.querySelector('.header__siteNavCat-title');
+    this.refs.menuCategory = document.querySelector('.header__siteNavMenu');
+    this.refs.itemCategoryMenu = document.querySelectorAll('.siteNavCat__item');
     this.refs.searchInput = document.querySelector('.header__search');
 
     this.refs.navButton.addEventListener('click', this.handleClick.bind(this));
@@ -18,8 +21,23 @@ class App {
     this.refs.siteNavMenu.classList.toggle('show');
   };
 
-  handleClickTitle() {
-    this.refs.menuCategory.classList.toggle('click');
+async handleClickTitle(e) {
+    console.log(e.target.nodeName);
+    const li = e.target.closest('.header__siteNavCat');
+    const ul = li.querySelector('.siteNavCat__item');
+    this.refs.itemCategoryMenu.forEach(element => {
+      element.innerHTML = '';
+    });
+    if(!ul.hasChildNodes()) {
+      this.refs.menuCategory.classList.toggle('click');
+      const storage = e.target.closest('h2').textContent.toLowerCase();
+      movieDBService.setStorage(storage === "movie"?storage:"tv");
+      const listCategory = await movieDBService.getGenres();
+      console.log('listCategory :', listCategory);
+      console.log('movieDBService.getGenresStr() :', movieDBService.getGenresStr());
+      const markup = listCategory.map(el => itemCategory(el)).join("");
+      ul.insertAdjacentHTML("beforeend", markup);
+    }
   };
 
   handleClickSearchInput(e) {
