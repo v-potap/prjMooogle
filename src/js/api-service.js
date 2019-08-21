@@ -30,18 +30,15 @@ class MovieDBService {
   async getInfo() {
     let infoItems = [];
     try {
-      const response = await fetch(this.getInfoStr());
+      const response = await fetch(
+        this.query === undefined ? this.getInfoStr() : this.getSearchStr()
+      );
       const json = await response.json();
       infoItems = json.results;
     } catch (err) {
       console.log(err);
     }
     return infoItems;
-  }
-
-  getInfoNext() {
-    this.page++;
-    return this.getInfo();
   }
 
   getGenresStr() {
@@ -79,23 +76,6 @@ class MovieDBService {
       (this.sortBy === "none" ? `` : `sort_by=${this.sortBy}&`) +
       `page=${this.page}`
     );
-  }
-
-  async getSearch() {
-    let infoItems = [];
-    try {
-      const response = await fetch(this.getSearchStr());
-      const json = await response.json();
-      infoItems = json.results;
-    } catch (err) {
-      console.log(err);
-    }
-    return infoItems;
-  }
-
-  getSearchNext() {
-    this.page++;
-    return this.getSearch();
   }
 
   setPage(page) {
