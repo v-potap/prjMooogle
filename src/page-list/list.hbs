@@ -1,7 +1,11 @@
 {{#each this}}
 <div class="posts__link" data-id={{id}} data-title={{title}}>
   <a class="posts-block" href="./details.html">
+    {{#if backdrop_path}}
       <img class="posts__image" src="https://image.tmdb.org/t/p/w500{{backdrop_path}}" alt="">
+    {{else}}
+      <img class="posts__image" src="../img/no-image.png" alt="">
+    {{/if}}
       <div class="posts-block__text">
         <p>{{title}}{{name}}</p>
       </div>
