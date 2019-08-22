@@ -1,0 +1,12 @@
+{{#each this}}
+<li class="reviews__article">
+  <img class="review-picture" src="../img/default-profile.png" alt="">
+  <div class="review-container">
+    <div class="review-sub-container">
+      <p class="review-name">{{this.author}}</p>
+      {{!-- <p class="review-time">28 дек</p> --}}
+    </div>
+    <p class="review-text">{{this.content}}</p>
+  </div>
+</li>
+{{/each}}
