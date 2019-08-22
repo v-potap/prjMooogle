@@ -41,10 +41,11 @@ class Search {
     const inputtwo = form.elements.mdsearch;
     const inputValue = inputtwo.value;
     inputtwo.value = "";
-    console.log(inputValue);
     movieDBService.setQuery(inputValue);
-    const result = await movieDBService.getInfo();
-    console.log(result);
+    localStorage.setItem('queryString', inputValue);
+    const i = localStorage.getItem('queryString');
+    this.closeModal();
+    window.location.href = 'index.html';
   }
 }
 
