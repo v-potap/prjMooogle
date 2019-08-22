@@ -44,6 +44,10 @@ input[type="radio"].visually-hidden {
 
 // ========
 
+.hidden {
+  display: none;
+}
+
 .film-section {
   max-width: 346px;
   margin: 55px auto 0 auto;
@@ -76,7 +80,7 @@ input[type="radio"].visually-hidden {
 }
 
 .film-date {
-  color: #addad6;
+  color: #77c1bb;
 
 }
 
@@ -140,7 +144,7 @@ input[type="radio"].visually-hidden {
 }
 
 .trailer__video {
-  height: 200px;
+  height: 210px;
 }
 
 // REVIEWS
@@ -224,7 +228,12 @@ input[type="radio"].visually-hidden {
 
   .film-info__select {
     margin: 0;
-    padding: 30px 0 20px 0;
+    padding: 15px 0;
+
+  }
+
+  .posts-block__button svg {
+    fill: #77c1bb
   }
 
   // TABLE
@@ -304,14 +313,13 @@ input[type="radio"].visually-hidden {
   }
 
   .film-image {
-    display:block;
+    display: block;
     width: 400px;
     margin-right: 0;
   }
 
   .film-info__title,
-  .film-release-date
-   {
+  .film-release-date {
     font-size: 20px;
     width: auto;
 
