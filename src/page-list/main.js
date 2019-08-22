@@ -113,6 +113,11 @@ function handlePostClick(event) {
 }
 
 async function showInfo() {
+  query = localStorage.getItem("queryString");
+  if (query !== "") {
+    movieDBService.setQuery(query);
+  }
+
   const data = await movieDBService.getInfo();
 
   let favor = localStorage.getItem("favoriteMovies");
