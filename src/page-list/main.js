@@ -108,6 +108,11 @@ function handlePostClick(event) {
 }
 
 async function showInfo() {
+  query = localStorage.getItem("queryString");
+  if (query !== "") {
+    movieDBService.setQuery(query);
+  }
+
   const data = await movieDBService.getInfo();
 
   let favor = localStorage.getItem("favoriteMovies");
@@ -130,7 +135,7 @@ async function showInfo() {
   filmsData = newData;
 
   if (filmsData.length >= 20) {
-    document.querySelector('.loadMore').classList.add('visible');
+    document.querySelector(".loadMore").classList.add("visible");
   }
 }
 
