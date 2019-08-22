@@ -1,16 +1,16 @@
 class MovieDBService {
-  constructor() {
+  constructor(storage, query) {
     this.movieDB = "https://api.themoviedb.org/3/";
     this.apiKey = "442f08ed580949109afb21f8d78ec790";
     this.page = 1;
     this.discover = "discover/";
     this.genres = "genre/";
     this.search = "search/";
-    this.storage = "movie";
+    this.storage = storage ? storage : "movie";
     this.region = "US";
     this.language = "en-US";
     this.sortBy = "popularity.desc";
-    this.query = undefined;
+    this.query = query;
   }
 
   getInfoStr() {
@@ -31,7 +31,7 @@ class MovieDBService {
     let infoItems = [];
     try {
       const response = await fetch(
-        this.query === undefined ? this.getInfoStr() : this.getSearchStr()
+        this.query === "" ? this.getInfoStr() : this.getSearchStr()
       );
       const json = await response.json();
       infoItems = json.results;
@@ -99,4 +99,7 @@ class MovieDBService {
   }
 }
 
-export default new MovieDBService();
+export default new MovieDBService(
+  localStorage.getItem("activeFavorities"),
+  localStorage.getItem("queryString") ? localStorage.getItem("queryString") : ""
+);

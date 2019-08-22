@@ -9,6 +9,9 @@ const sortBy = document.querySelector(".list-handler__sort-inputs");
 
 let filmsData;
 
+console.log('movieDBService :', movieDBService);
+document.querySelector(`#radio-${localStorage.getItem("activeFavorities")}`).checked=true;
+
 showInfo();
 
 posts.addEventListener("click", handlePostClick);
@@ -39,10 +42,10 @@ function handleLoadMoreClick() {
 function handleStorageClick(e) {
   if (e.target.tagName === "INPUT") {
     const currentStorage = e.target.value;
-    if (currentStorage === movieDBService.storage) {
+    if (currentStorage === localStorage.getItem("activeFavorities")) {
       return;
     }
-    localStorage.setItem("queryString", null);
+    localStorage.setItem("queryString", "");
     localStorage.setItem("activeFavorities", currentStorage);
     posts.innerHTML = "";
     document.querySelector('.loadMore').classList.add('visible');
