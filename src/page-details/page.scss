@@ -17,6 +17,10 @@
   display: table;
 }
 
+// body {
+//   background-color: red;
+// }
+
 img {
   width: 100%;
   height: auto;
@@ -46,49 +50,28 @@ input[type="radio"].visually-hidden {
   padding: 7px;
 }
 
-.hidden-on-mobile {
-  display: none;
-}
-
-.film-about-container {
-  position: relative;
-}
 
 .film-image {
-  height: 180px;
-  object-fit: contain;
-  // width: 346px;
+  margin: 10px auto;
+  margin-bottom: 20px;
 }
 
-.film-image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 187px;
-  width: 360px;
-}
-
-.film-info__title {
-  color: #fff;
-  position: absolute;
-  bottom: 22px;
-  left: 16px;
-  margin: 0px;
-  font-weight: 500;
-  font-size: 20px;
-  display: inline-block;
-}
-
+.film-info__title,
 .film-release-date {
-  color: #372c48;
-  font-weight: 500;
+  color: rgba(55, 44, 72, 255);
+  font-size: 16px;
+  display: inline;
+}
+
+.hidden-on-mobile {
+  display: none;
 }
 
 .film-info__select {
   display: flex;
   justify-content: space-between;
   list-style: none;
-  margin: 8px;
+  // margin: 8px;
   padding: 16px 0px;
 }
 
@@ -183,6 +166,8 @@ input[type="radio"].visually-hidden {
 .review-text {
   color: #757575;
   font-size: 14px;
+  overflow: auto;
+
 }
 
 .review-container {
@@ -222,29 +207,14 @@ input[type="radio"].visually-hidden {
     margin: 0;
   }
 
-  .film-image-overlay {
-    position: absolute;
-    top: 0;
-    left: 290px;
-    height: 20px;
-    width: 200px;
-  }
-
-  .film-info__title {
-    color: rgba(55, 44, 72, 255);
-    position: static;
-    font-size: 16px;
-  }
-
   .film-info__about {
     font-size: 12px;
     line-height: 1.5;
   }
 
   .film-image {
-    height: 296px;
     width: 274px;
-    margin-right: 14px;
+    margin: 0 14px 0 0;
   }
 
   .film-wrapper,
@@ -300,8 +270,8 @@ input[type="radio"].visually-hidden {
   }
 
   .trailer__video {
-    width: 368px;
-    height: 226px;
+    width: 500px;
+    height: 306px;
   }
 
   // REVIEWS
@@ -335,19 +305,16 @@ input[type="radio"].visually-hidden {
 
   .film-image {
     display:block;
-    height: 434px;
     width: 400px;
     margin-right: 0;
   }
 
-  .film-image-overlay {
-    left: 430px;
-    height: 24px;
-    width: 230px;
-  }
-
-  .film-info__title {
+  .film-info__title,
+  .film-release-date
+   {
     font-size: 20px;
+    width: auto;
+
   }
 
   // ABOUT

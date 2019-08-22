@@ -44,12 +44,16 @@ function handleStorageClick(e) {
     }
     localStorage.setItem("activeFavorities", currentStorage);
     posts.innerHTML = "";
+    document.querySelector('.loadMore').classList.add('visible');
 
     if (currentStorage === "favorities") {
+      showFavoritiesInfo();
+      if ((document.querySelectorAll(".posts-block__button1")).length <= 20) {
+        document.querySelector('.loadMore').classList.remove('visible');
+      }
       document.querySelectorAll(".posts-block__button1").forEach(element => {
         element.classList.add("button_color");
       });
-      showFavoritiesInfo();
     } else {
       movieDBService.setStorage(currentStorage);
       movieDBService.setPage(1);
@@ -71,7 +75,7 @@ function handlePostClick(event) {
   if (blockLink) {
     localStorage.setItem("id", id);
     if (!title) {
-      localStorage.setItem("type", "series");
+      localStorage.setItem("type", "tv");
     } else {
       localStorage.setItem("type", "movie");
     }
@@ -98,8 +102,9 @@ function handlePostClick(event) {
         el => el.id !== (clickedMovie || +id)
       );
       buttonfavourite.classList.remove("button_color");
-      if (localStorage.getItem("", "favorities")) {
+      if (localStorage.getItem("activeFavorities", "favorities") === "favorities") {
         blockLink.remove();
+        // console.log(localStorage.getItem("activeFavorities", "favorities"));
       }
     }
 
@@ -133,10 +138,6 @@ async function showInfo() {
 
   posts.insertAdjacentHTML("beforeend", list(newData));
   filmsData = newData;
-
-  if (filmsData.length >= 20) {
-    document.querySelector(".loadMore").classList.add("visible");
-  }
 }
 
 function showFavoritiesInfo() {
