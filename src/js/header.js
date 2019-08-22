@@ -47,11 +47,14 @@ class App {
       this.refs.siteNavMenu.classList.toggle("show");
 
       document.querySelector(`#radio-${storage}`).dispatchEvent(evt);
-
     } else {
       let st = storage;
-      st = (st === "series" ? "tv" : st);
-      st = (st === "movies" ? "movie" : st);
+      st = st === "series" ? "tv" : st;
+      st = st === "movies" ? "movie" : st;
+
+      this.refs.itemCategoryMenu.forEach(element => {
+        element.innerHTML = "";
+      });
 
       movieDBService.setStorage(st);
       const listCategory = await movieDBService.getGenres();

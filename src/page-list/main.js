@@ -50,10 +50,10 @@ function handleLoadMoreClick() {
 function handleStorageClick(e) {
   if (e.target.tagName === "INPUT") {
     const currentStorage = e.target.value;
-    if (currentStorage === localStorage.getItem("activeFavorities")) {
+    if (currentStorage === localStorage.getItem("activeFavorities") && movieDBService.query !== "") {
       return;
     }
-    localStorage.setItem("queryString", "");
+    // localStorage.setItem("queryString", "");
     localStorage.setItem("activeFavorities", currentStorage);
     posts.innerHTML = "";
     document.querySelector(".loadMore").classList.add("visible");
