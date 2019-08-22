@@ -120,11 +120,11 @@ module.exports = {
   // https://webpack.js.org/configuration/optimization/
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      }),
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: true
+      // }),
       new OptimizeCssAssetsPlugin({})
     ]
   }
