@@ -9,8 +9,16 @@ const sortBy = document.querySelector(".list-handler__sort-inputs");
 
 let filmsData;
 
-console.log('movieDBService :', movieDBService);
-document.querySelector(`#radio-${localStorage.getItem("activeFavorities")}`).checked=true;
+console.log("movieDBService :", movieDBService);
+const startStorage = document.querySelector(
+  `#radio-${localStorage.getItem("activeFavorities")}`
+);
+
+if (startStorage !== null) {
+  document.querySelector(
+    `#radio-${localStorage.getItem("activeFavorities")}`
+  ).checked = true;
+}
 
 showInfo();
 
@@ -48,12 +56,12 @@ function handleStorageClick(e) {
     localStorage.setItem("queryString", "");
     localStorage.setItem("activeFavorities", currentStorage);
     posts.innerHTML = "";
-    document.querySelector('.loadMore').classList.add('visible');
+    document.querySelector(".loadMore").classList.add("visible");
 
     if (currentStorage === "favorities") {
       showFavoritiesInfo();
-      if ((document.querySelectorAll(".posts-block__button1")).length <= 20) {
-        document.querySelector('.loadMore').classList.remove('visible');
+      if (document.querySelectorAll(".posts-block__button1").length <= 20) {
+        document.querySelector(".loadMore").classList.remove("visible");
       }
       document.querySelectorAll(".posts-block__button1").forEach(element => {
         element.classList.add("button_color");
@@ -74,8 +82,10 @@ function handlePostClick(event) {
   const blockLink = event.target.closest(".posts__link");
   const buttonfavourite = event.target.closest(".posts-block__button1");
   const buttonNotification = event.target.closest(".posts-block__button2");
+
   const closeButton1 = document.querySelector('.submit_button');
   const closeButton2 = document.querySelector('.close');
+
   const id = blockLink.dataset.id;
   const title = blockLink.dataset.title;
 
@@ -109,7 +119,9 @@ function handlePostClick(event) {
         el => el.id !== (clickedMovie || +id)
       );
       buttonfavourite.classList.remove("button_color");
-      if (localStorage.getItem("activeFavorities", "favorities") === "favorities") {
+      if (
+        localStorage.getItem("activeFavorities", "favorities") === "favorities"
+      ) {
         blockLink.remove();
         // console.log(localStorage.getItem("activeFavorities", "favorities"));
       }
@@ -119,6 +131,7 @@ function handlePostClick(event) {
   }
 
   if (buttonNotification) {
+
     document.querySelector('.modal').classList.add('visible');
   };
 
@@ -134,7 +147,7 @@ function handlePostClick(event) {
 
 async function showInfo() {
   const query = localStorage.getItem("queryString");
-  if (query !== null && query !=="null") {
+  if (query !== null && query !== "null") {
     movieDBService.setQuery(query);
   }
 
