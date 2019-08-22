@@ -1,6 +1,10 @@
 {{#each this}}
 <div class="actor-item">
-  <img class="actor-item__image" src="https://image.tmdb.org/t/p/original{{this.profile_path}}" alt="">
-  <a class="actor-item__name">{{this.name}}</a>
+  {{#if this.profile_path}}
+    <img class="actor-item__image" src="https://image.tmdb.org/t/p/original{{this.profile_path}}" alt="">
+  {{else}}
+    <img class="actor-item__image" src="../img/no-image.png" alt="">
+  {{/if}}
+  <p class="actor-item__name">{{this.name}}</p>
 </div>
 {{/each}}

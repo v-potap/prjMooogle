@@ -7,6 +7,8 @@ img {
 
 .actor-slider-container {
   margin-bottom: 20px;
+  width: 300px;
+  margin: 0 auto;
 }
 
 .pictures-slider-container,
@@ -50,7 +52,7 @@ img {
   .sliders-section {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 
   .actor-slider-container,
@@ -78,7 +80,8 @@ img {
     &__image {
       width: 75px;
       height: 73px;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
+      object-fit: cover;
     }
   }
 
@@ -91,12 +94,14 @@ img {
     &__image {
       height: 55px;
       width: 55px;
+      margin-bottom: 5px;
 
     }
 
     &__name {
       font-size: 10px;
-      line-height: .5;
+      line-height: 1;
+
     }
   }
 }
