@@ -15,12 +15,13 @@ const localType = localStorage.getItem('type');
 
 const movieDB = 'https://api.themoviedb.org/3/';
 const apiKey = '442f08ed580949109afb21f8d78ec790';
+const whichOne = localStorage.getItem('type');
 const page = 1;
 
 // FILM DETAILS
 
 function getMovieInfo() {
-  return fetch(`${movieDB}movie/${localId}?api_key=${apiKey}&language=en-US`) // if series: tv instead movies
+  return fetch(`${movieDB}${whichOne}/${localId}?api_key=${apiKey}&language=en-US`) // if series: tv instead movies
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -33,7 +34,12 @@ function getMovieInfo() {
       document.querySelector('.film-country').textContent = joinElements(data.production_countries);
       document.querySelector('.film-image').src = `https://image.tmdb.org/t/p/original${data.poster_path}`;
       document.querySelector('.film-genres').textContent = joinElements(data.genres);
-      document.querySelector('.film-motto').textContent = `"${data.tagline}"`;
+
+      if (data.tagline === '') {
+        document.querySelector('.film-motto').textContent = `Save the world!`;
+      } else {
+        document.querySelector('.film-motto').textContent = `${data.tagline}`;
+      }
       document.querySelector('.film-runtime').textContent = `${data.runtime} min / ${Math.round(data.runtime / 60)} h`;
       document.querySelector('.film-info__about').textContent = data.overview;
 
@@ -43,7 +49,7 @@ function getMovieInfo() {
       }
     });
 }
-getMovieInfo()
+// getMovieInfo()
 
 console.log(localId);
 console.log(localType);
@@ -94,7 +100,7 @@ function getPeopleInfo() {
 
     })
 }
-getPeopleInfo()
+// getPeopleInfo()
 
 
 // PICTURES SLIDER
@@ -121,7 +127,7 @@ function getMoviePictures() {
 
     });
 }
-getMoviePictures();
+// getMoviePictures();
 
 
 // TRAILER
@@ -137,7 +143,7 @@ function getMovieTrailer() {
       document.querySelector('.trailer__video').src = `https://www.youtube.com/embed/${data.results[0].key}`;
     });
 }
-getMovieTrailer();
+// getMovieTrailer();
 
 // REVIEWS
 
@@ -158,15 +164,159 @@ function getMovieReviews() {
       contentArr.forEach((review) => {
         review.textContent = review.textContent.slice(0, 250) + '...';
       })
+
+      if ((data.results).length === 0) {
+        const reviews = document.querySelector('.reviews-wrapper');
+        reviews.classList.add('hidden');
+      }
     });
 }
-getMovieReviews();
+// getMovieReviews();
 
-// const formatString = function (string) {
-//   if (string.length >= 40) {
-//     const shortString = string.slice(0, 40);
-//     string = shortString + '...';
-//   }
-//  return string;
-// }
+// ===========================  SERIES =========================
 
+// SERIES DETAILS
+
+function getSeriesInfo() {
+  return fetch(`${movieDB}${whichOne}/${localId}?api_key=${apiKey}&language=en-US`) // if series: tv instead movies
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      document.querySelector('.film-info__title').textContent = `${data.original_name}`;
+      document.querySelector('.film-country').textContent = data.origin_country;
+      document.querySelector('.film-image').src = `https://image.tmdb.org/t/p/original${data.poster_path}`;
+      document.querySelector('.film-genres').textContent = joinElements(data.genres);
+
+      if (data.tagline === undefined) {
+        document.querySelector('.film-motto').textContent = `Save the world!`;
+      } else {
+        document.querySelector('.film-motto').textContent = `${data.tagline}`;
+      }
+      document.querySelector('.film-runtime').textContent = `${data.episode_run_time} min / ${Math.round(data.episode_run_time / 60)} h`;
+      document.querySelector('.film-info__about').textContent = data.overview;
+
+
+      function joinElements(arr) {
+        return arr.map(arr => arr.name).join(', ');
+      }
+    });
+}
+// getSeriesInfo()
+
+function getSeriesPeopleInfo() {
+  return fetch(`${movieDB}${whichOne}/${localId}/credits?api_key=${apiKey}&language=en-US`) // if series: tv instead movies
+    .then((response) => response.json())
+    .then((data) => {
+
+      console.log('data-credits :', data);
+
+      // ACTORS SLIDER
+
+      console.log('data-- :', data);
+      const actorsSlider = document.querySelector('.slider-actors');
+      actorsSlider.insertAdjacentHTML('beforeend', actorTemplate(data.cast));
+
+      // SLICK ACTORS SLIDER
+
+      $('.slider-actors').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: false
+      });
+
+    })
+}
+// getSeriesPeopleInfo()
+
+
+// PICTURES SLIDER
+
+function getSeriesPictures() {
+  return fetch(`${movieDB}${whichOne}/${localId}/images?api_key=${apiKey}`)
+    .then((response) => response.json())
+    .then((data) => {
+
+      console.log('data-backdrops:', data);
+
+      const picturesSlider = document.querySelector('.slider-pictures');
+      console.log(picturesSlider);
+      // console.log('pictureTemplate(data.backdrops) :', pictureTemplate(data.backdrops));
+      picturesSlider.insertAdjacentHTML('beforeend', pictureTemplate(data.backdrops));
+
+      // SLICK PICTURES SLIDER
+
+      $('.slider-pictures').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+      });
+
+    });
+}
+// getSeriesPictures();
+
+
+// TRAILER
+
+function getSeriesTrailer() {
+  return fetch(`${movieDB}${whichOne}/${localId}/videos?api_key=${apiKey}&language=en-US`) // if series: tv instead movies
+    .then((response) => response.json())
+    .then((data) => {
+
+      console.log('data:', data);
+
+      console.log('data.results[0].key :', data.results[0].key);
+      document.querySelector('.trailer__video').src = `https://www.youtube.com/embed/${data.results[0].key}`;
+    });
+}
+// getSeriesTrailer();
+
+// REVIEWS
+
+function getSeriesReviews() {
+  return fetch(`${movieDB}${whichOne}/${localId}/reviews?api_key=${apiKey}&language=en-US&page=1`) // if series: tv instead movies
+    .then((response) => response.json())
+    .then((data) => {
+
+      console.log('reviews-data:', data);
+
+      const reviewsList = document.querySelector('.reviews-list');
+      console.log(reviewsList);
+
+      reviewsList.insertAdjacentHTML('beforeend', reviewTemplate(data.results));
+
+      const contentArr = document.querySelectorAll(".review-text");
+
+      contentArr.forEach((review) => {
+        review.textContent = review.textContent.slice(0, 250) + '...';
+      })
+
+      console.log('data.results :', data.results);
+
+      if ((data.results).length === 0) {
+        const reviews = document.querySelector('.reviews-wrapper');
+        reviews.classList.add('hidden');
+      }
+    });
+}
+// getSeriesReviews();
+
+if (whichOne === 'movie') {
+  getMovieInfo();
+  getPeopleInfo();
+  getMoviePictures();
+  getMovieTrailer();
+  getMovieReviews();
+} else {
+  getSeriesInfo();
+  getSeriesPeopleInfo();
+  getSeriesPictures();
+  getSeriesTrailer();
+  getSeriesReviews();
+
+  const director = document.querySelector('.series-director');
+  const script = document.querySelector('.series-script');
+
+  director.classList.add('hidden');
+  script.classList.add('hidden');
+}
