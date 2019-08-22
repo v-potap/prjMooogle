@@ -7,6 +7,8 @@ img {
 
 .actor-slider-container {
   margin-bottom: 20px;
+  width: 300px;
+  margin: 0 auto;
 }
 
 .pictures-slider-container,
@@ -79,6 +81,7 @@ img {
       width: 75px;
       height: 73px;
       margin-bottom: 14px;
+      object-fit: cover;
     }
   }
 
