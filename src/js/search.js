@@ -54,7 +54,7 @@ class Search {
     localStorage.setItem("queryString", inputValue);
     const i = localStorage.getItem("queryString");
     this.closeModal();
-
+  
     if(window.location.pathname !== '/index.html') {
       window.location.pathname = '/index.html';
     }
