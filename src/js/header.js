@@ -53,6 +53,10 @@ class App {
       st = (st === "series" ? "tv" : st);
       st = (st === "movies" ? "movie" : st);
 
+      this.refs.itemCategoryMenu.forEach(element => {
+        element.innerHTML = "";
+      });
+
       movieDBService.setStorage(st);
       const listCategory = await movieDBService.getGenres();
       const markup = listCategory.map(el => itemCategory(el)).join("");
