@@ -22,7 +22,6 @@ class App {
   };
 
 async handleClickTitle(e) {
-    console.log(e.target.nodeName);
     const li = e.target.closest('.header__siteNavCat');
     const ul = li.querySelector('.siteNavCat__item');
     this.refs.itemCategoryMenu.forEach(element => {
@@ -33,8 +32,6 @@ async handleClickTitle(e) {
       const storage = e.target.closest('h2').textContent.toLowerCase();
       movieDBService.setStorage(storage === "movie"?storage:"tv");
       const listCategory = await movieDBService.getGenres();
-      console.log('listCategory :', listCategory);
-      console.log('movieDBService.getGenresStr() :', movieDBService.getGenresStr());
       const markup = listCategory.map(el => itemCategory(el)).join("");
       ul.insertAdjacentHTML("beforeend", markup);
     }

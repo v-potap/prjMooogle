@@ -1,7 +1,8 @@
+import movieDBService from "./api-service";
 class Search {
   constructor() {
     this.refs = {};
-    this.refs.searchForm = document.querySelector('#modal-search-form');
+    this.refs.searchForm = document.querySelector("#modal-search-form");
     this.refs.input = document.querySelector("search-form__field");
     this.refs.modalform = document.querySelector(".modal-form");
     this.refs.first_button = document.querySelector(".header__search");
@@ -12,7 +13,6 @@ class Search {
     this.refs.first_button.addEventListener("click", this.openModal.bind(this));
     this.refs.overlay.addEventListener("click", this.closeModal.bind(this));
     this.refs.closeModalBtn.addEventListener("click", this.closeModal.bind(this));
-
   }
 
   openModal(e) {
@@ -35,16 +35,17 @@ class Search {
     this.closeModal();
   }
 
-  searchMovieHandle(e) {
+  async searchMovieHandle(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const inputtwo = form.elements.mdsearch;
-    const inputValue =  inputtwo.value;
-    inputtwo.value = '';
+    const inputValue = inputtwo.value;
+    inputtwo.value = "";
     console.log(inputValue);
-    // movieDBService.getSearch();
-    // movieDBService.setQuery(inputValue);
-}
+    movieDBService.setQuery(inputValue);
+    const result = await movieDBService.getInfo();
+    console.log(result);
+  }
 }
 
 new Search();
