@@ -30,6 +30,16 @@ async handleClickTitle(e) {
     if(!ul.hasChildNodes()) {
       this.refs.menuCategory.classList.toggle('click');
       const storage = e.target.closest('h2').textContent.toLowerCase();
+      if(storage === "favorites") {
+        const evt = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+      });
+      this.refs.siteNavMenu.classList.toggle('show');
+      document.querySelector("#radio-favorities").dispatchEvent(evt);
+      return;
+      }
       movieDBService.setStorage(storage === "movie"?storage:"tv");
       const listCategory = await movieDBService.getGenres();
       const markup = listCategory.map(el => itemCategory(el)).join("");
