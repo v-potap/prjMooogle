@@ -12,29 +12,33 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="page__wrapper" style="display: none;">
+      <%= require('html-loader!../globals/header.html') %>
+      <%= require('html-loader!../globals/search.html') %>
+      <%= require('html-loader!../globals/nav.html') %>
+      <%= require('html-loader!../globals/category.html') %>
 
-  <%= require('html-loader!../globals/header.html') %>
-  <%= require('html-loader!../globals/search.html') %>
-  <%= require('html-loader!../globals/nav.html') %>
-  <%= require('html-loader!../globals/category.html') %>
+    <section class="posts">
+    </section>
+    <button class="loadMore visible">Load more</button>
 
-<section class="posts">
-</section>
-<button class="loadMore visible">Load more</button>
+      <%= require('html-loader!../globals/footer.html') %>
 
-  <%= require('html-loader!../globals/footer.html') %>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Name:</p>
+        <input type="text" required>
+        <p>Email:</p>
+        <input type="email" required>
+        <p>Phone:</p>
+        <input type="tel" required>
+        <button class="submit_button" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+  <div class="loader"> ...loading</div>
 </body>
 </html>
 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Name:</p>
-    <input type="text" required>
-    <p>Email:</p>
-    <input type="email" required>
-    <p>Phone:</p>
-    <input type="tel" required>
-    <button class="submit_button" type="submit">Submit</button>
-  </div>
-</div>

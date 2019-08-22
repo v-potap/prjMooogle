@@ -9,6 +9,14 @@ const sortBy = document.querySelector(".list-handler__sort-inputs");
 
 let filmsData;
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  setTimeout(() => {
+    
+    document.querySelector('.page__wrapper').style.display = "block";
+    document.querySelector('.loader').style.display = "none";
+  }, 1000);
+});
+
 console.log("movieDBService :", movieDBService);
 const startStorage = document.querySelector(
   `#radio-${localStorage.getItem("activeFavorities")}`
