@@ -42,6 +42,7 @@ function handleStorageClick(e) {
     if (currentStorage === movieDBService.storage) {
       return;
     }
+    localStorage.setItem("queryString", null);
     localStorage.setItem("activeFavorities", currentStorage);
     posts.innerHTML = "";
     document.querySelector('.loadMore').classList.add('visible');
@@ -113,8 +114,8 @@ function handlePostClick(event) {
 }
 
 async function showInfo() {
-  query = localStorage.getItem("queryString");
-  if (query !== "") {
+  const query = localStorage.getItem("queryString");
+  if (query !== null && query !=="null") {
     movieDBService.setQuery(query);
   }
 
