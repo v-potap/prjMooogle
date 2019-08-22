@@ -9,7 +9,7 @@ const sortBy = document.querySelector(".list-handler__sort-inputs");
 
 let filmsData;
 
-console.log("movieDBService :", movieDBService);
+// console.log("movieDBService :", movieDBService);
 const startStorage = document.querySelector(
   `#radio-${localStorage.getItem("activeFavorities")}`
 );
