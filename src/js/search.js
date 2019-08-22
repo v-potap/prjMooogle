@@ -3,16 +3,24 @@ class Search {
   constructor() {
     this.refs = {};
     this.refs.searchForm = document.querySelector("#modal-search-form");
-    this.refs.input = document.querySelector("search-form__field");
+    this.refs.input = document.querySelector("#modal-search-input");
     this.refs.modalform = document.querySelector(".modal-form");
     this.refs.first_button = document.querySelector(".header__search");
     this.refs.overlay = document.querySelector(".modal-overlay");
-    this.refs.closeModalBtn = document.querySelector('button[data-action="close-modal-form"]');
+    this.refs.closeModalBtn = document.querySelector(
+      'button[data-action="close-modal-form"]'
+    );
 
-    this.refs.searchForm.addEventListener("submit", this.searchMovieHandle.bind(this));
+    this.refs.searchForm.addEventListener(
+      "submit",
+      this.searchMovieHandle.bind(this)
+    );
     this.refs.first_button.addEventListener("click", this.openModal.bind(this));
     this.refs.overlay.addEventListener("click", this.closeModal.bind(this));
-    this.refs.closeModalBtn.addEventListener("click", this.closeModal.bind(this));
+    this.refs.closeModalBtn.addEventListener(
+      "click",
+      this.closeModal.bind(this)
+    );
   }
 
   openModal(e) {
@@ -20,6 +28,7 @@ class Search {
     this.refs.modalform.classList.add("is-open");
     this.refs.overlay.classList.add("is-open");
     window.addEventListener("keydown", this.handleButtonPress.bind(this));
+    this.refs.input.focus();
   }
 
   closeModal() {
@@ -42,10 +51,26 @@ class Search {
     const inputValue = inputtwo.value;
     inputtwo.value = "";
     movieDBService.setQuery(inputValue);
-    localStorage.setItem('queryString', inputValue);
-    const i = localStorage.getItem('queryString');
+    localStorage.setItem("queryString", inputValue);
+    const i = localStorage.getItem("queryString");
     this.closeModal();
-    window.location.href = 'index.html';
+
+    if(window.location.pathname !== '/index.html') {
+      window.location.pathname = '/index.html';
+    }
+    const storage = localStorage.getItem("activeFavorities");
+    if (storage !== "favorites") {
+      const evt = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      if (storage === "tv") {
+        document.querySelector("#radio-series").dispatchEvent(evt);
+      } else if (storage === "movie") {
+        document.querySelector("#radio-movies").dispatchEvent(evt);
+      }
+    }
   }
 }
 
