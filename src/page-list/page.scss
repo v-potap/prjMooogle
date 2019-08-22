@@ -166,10 +166,6 @@ img {
   }
 }
 
-.visible {
-  display: block;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -217,4 +213,8 @@ img {
   border: none;
   cursor: pointer;
   color: #77c1bb;
+}
+
+.visible {
+  display: block;
 }

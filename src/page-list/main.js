@@ -70,6 +70,9 @@ function handlePostClick(event) {
 
   const blockLink = event.target.closest(".posts__link");
   const buttonfavourite = event.target.closest(".posts-block__button1");
+  const buttonNotification = event.target.closest(".posts-block__button2");
+  const closeButton1 = document.querySelector('.submit_button');
+  const closeButton2 = document.querySelector('.close');
   const id = blockLink.dataset.id;
   const title = blockLink.dataset.title;
 
@@ -111,6 +114,19 @@ function handlePostClick(event) {
 
     localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
   }
+
+  if (buttonNotification) {
+    document.querySelector('.modal').classList.add('visible');
+  };
+
+  closeButton1.addEventListener('click', e => {
+    document.querySelector('.modal').classList.remove('visible');
+    closeButton1.removeEventListener('click', e);
+  });
+  closeButton2.addEventListener('click', e => {
+    document.querySelector('.modal').classList.remove('visible');
+    closeButton2.removeEventListener('click', e);
+  });
 }
 
 async function showInfo() {
